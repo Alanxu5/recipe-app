@@ -30,8 +30,12 @@ export default {
         cookTime: this.recipeModel.cookTime,
         feeds: this.recipeModel.feeds,
       };
-
+      
+      this.closeModal();
       this.$store.dispatch('SUBMIT_NEW_RECIPE', recipe)
+    },
+    closeModal() {
+      this.$emit('closeModal');
     }
   },
 }
@@ -40,6 +44,13 @@ export default {
 <template>
   <div>
     <div class="submit-modal">
+      <div class="modal-header">
+        <i 
+          class="material-icons"
+          @click="closeModal">
+          close
+        </i>
+      </div>
       <div class="container">
         <div class="top-container">
           <div class="image-upload" />
@@ -123,7 +134,21 @@ export default {
   width: 600px;
   height: 600px;
   border: 1px solid lightgrey;
-  padding: 24px;
+  padding: 24px 24px 24px 24px;
+}
+
+.modal-header {
+  position: absolute;
+  top: .5rem;
+  right: .5rem; 
+}
+
+.material-icons {
+  font-size: 18px;
+}
+
+.material-icons:hover {
+  cursor: pointer;
 }
 
 .container {

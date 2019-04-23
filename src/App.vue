@@ -51,7 +51,9 @@ export default {
       </div>
     </div>
     <RouterView />
-    <Submit v-if="showModal" />
+    <Submit 
+      v-if="showModal"
+      @closeModal="toggleModal" />
   </div>
 </template>
 
