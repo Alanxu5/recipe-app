@@ -31,7 +31,7 @@ export default {
           <div class="image-container">
             <img 
               class="image"
-              src="@/assets/images/IMG_1176.jpg">
+              src="@/assets/images/IMG_2298.jpg">
           </div>
           <div class="info">
             <div class="title">
@@ -79,7 +79,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .recipe-container {
-    margin: 3rem 4rem 3rem 7rem;
+    margin: 1.5rem 4rem 3rem 7rem;
     display: grid;
     grid-template-columns: 75% 1fr;
     grid-column-gap: 3rem;
@@ -116,6 +116,7 @@ export default {
     font-weight: bold;
     text-align: center;
     margin-bottom: 1rem;
+    margin-top: -7px;
   }
 
   .image-container {
@@ -125,6 +126,7 @@ export default {
   .image {
     width: 100%;
     height: 400px;
+    object-fit: cover;
   }
 
   .instructions {
