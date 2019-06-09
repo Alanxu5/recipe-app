@@ -53,24 +53,29 @@ export default {
       </div>
       <div class="container">
         <div class="top-container">
-          <div class="image-upload" />
+          <div class="image-upload" />          
           <div class="short-input">
             <TextInput 
               v-model="recipeModel.name"
               label-name="Name" />
-            <div class="time-input">
-              <TextInput 
-                v-model="recipeModel.prepTime"
-                label-name="Prep Time" />
-              <TextInput 
-                v-model="recipeModel.cookTime"
-                label-name="Cook Time" />
-            </div>
-            <div class="time-input">
-              <TextInput 
-                v-model="recipeModel.feeds"
-                label-name="Servings" />
-              <div class="prep-container">
+            <div class="prep-container">
+              <div>
+                <label>
+                  Category 
+                </label>
+                <select class="prep-input">
+                  <option value="protein">
+                    Protein
+                  </option>
+                  <option value="vegetable">
+                    Vegetable
+                  </option>
+                  <option value="carbohydrate">
+                    Carbohydrates
+                  </option>
+                </select>
+              </div>
+              <div>
                 <label>
                   Preperation 
                 </label>
@@ -89,7 +94,18 @@ export default {
                   </option>
                 </select>
               </div>
-            </div>                      
+            </div>                  
+            <div class="time-input">
+              <TextInput 
+                v-model="recipeModel.prepTime"
+                label-name="Prep Time" />
+              <TextInput 
+                v-model="recipeModel.cookTime"
+                label-name="Cook Time" />
+              <TextInput 
+                v-model="recipeModel.feeds"
+                label-name="Servings" />                
+            </div>                  
           </div>
         </div>
         <div class="bottom-container">
@@ -161,7 +177,7 @@ export default {
 
 .top-container {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
 }
 
 .image-upload {
@@ -185,14 +201,18 @@ export default {
 
 .time-input {
   display: grid;
-  grid-template-columns: 145px auto;
-  column-gap: 10px;
+  grid-template-columns: 100px 100px 100px;
+  column-gap: 1rem;
 }
 
 .prep-container {
   display: grid;
-  grid-template-rows: 20px 30px;
-  row-gap: 5px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: .5rem;
+}
+
+select {
+  width: 100%;
 }
 
 .prep-input {

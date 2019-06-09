@@ -37,4 +37,13 @@ export default {
     grid-row-gap: 5px;
     grid-template-rows: 20px 30px;
   }
+
+  label {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    padding: 0;
+  }
 </style>
