@@ -8,13 +8,31 @@ export default {
   },
   data() {
     return {
-      showModal: false
+      showModal: false,
+      isAuthenticated: false      
     };
   },
+  async created() {
+    try {
+      await this.$auth.renewTokens();
+    } catch (e) {
+      console.log(e);
+    }
+  },  
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
-    }
+    },
+    login() {
+      this.$auth.login();
+    },
+    logout() {
+      this.$auth.logOut();
+    },
+    handleLoginEvent(data) {
+      this.isAuthenticated = data.loggedIn;
+      this.profile = data.profile;
+    }        
   }
 }
 </script>
@@ -43,11 +61,23 @@ export default {
           </a>
         </RouterLink>
       </div>
-      <div />
       <div 
         class="link"
         @click="toggleModal">
         Submit
+      </div>
+      <div />
+      <div
+        v-if="isAuthenticated"
+        class="link"
+        @click="logout">
+        Logout
+      </div>
+      <div 
+        v-else
+        class="link"
+        @click="login">
+        Login
       </div>
     </div>
     <RouterView />
@@ -73,7 +103,7 @@ html, body {
 
 .header {
   display: grid;
-  grid-template-columns: minmax(2rem, 5%) minmax(9rem, 15%) minmax(9rem, 15%) 1fr minmax(9rem, 15%);
+  grid-template-columns: minmax(2rem, 5%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) 1fr minmax(9rem, 15%);
   background-color: lightblue;
   height: 3rem;
 }

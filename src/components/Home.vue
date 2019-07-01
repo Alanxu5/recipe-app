@@ -1,12 +1,24 @@
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  data() {
+    return {
+      profile: this.$auth.profile
+    };
+  },
+  methods: {
+    handleLoginEvent(data) {
+      this.profile = data.profile;
+    }
+  }  
 }
 </script>
 
 <template>
   <div>
     HOME
+    <h2>{{ profile.name }}</h2>
+    <p>{{ profile.email }}</p>
     <RouterView />
   </div>
 </template>
