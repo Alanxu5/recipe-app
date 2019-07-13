@@ -12,10 +12,12 @@ export default {
         name: "",
         description: "",
         ingredients: "",
-        directions: "",
+        directions: {'data': '3'},
         prepTime: 0,
         cookTime: 0,
         feeds: 0,
+        method: 1,
+        type: 1
       }
     }
   },
@@ -29,6 +31,8 @@ export default {
         prepTime: this.recipeModel.prepTime,
         cookTime: this.recipeModel.cookTime,
         feeds: this.recipeModel.feeds,
+        method: this.recipeModel.method,
+        type: this.recipeModel.type
       };
       
       this.closeModal();
