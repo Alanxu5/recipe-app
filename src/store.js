@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    recipe: []
+    recipe: [],
+    recipes: []
   },
   mutations: {
     SUBMIT_RECIPE: (state, { recipe }) => {
@@ -15,7 +16,10 @@ export default new Vuex.Store({
     },
     GET_RECIPE: (state, { recipe }) => {
       router.push({name: 'recipe', params: { recipeDate: recipe }});
-    }
+    },
+    ADD_ALL_RECIPES: (state, { recipes }) => {
+      state.recipes = recipes;
+    },
   },
   actions: {
     SUBMIT_NEW_RECIPE: async function ({ commit }, recipe) {
@@ -60,6 +64,26 @@ export default new Vuex.Store({
       } catch(err) {
         console.log(err);
       }      
-    }
+    },
+    GET_ALL_RECIPES: async function ({ commit }) {
+      try {
+        const response = await fetch('http://localhost:8000/recipes', {
+          method: "GET",
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
+        });
+
+        const responseJson = await response.json();
+
+        if (response.ok) {
+          commit('ADD_ALL_RECIPES', {recipes: responseJson.recipes})
+        } else {
+          console.log(response)
+        }        
+      } catch(err) {
+        console.log(err);
+      }
+    }    
   }
 })

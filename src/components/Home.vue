@@ -6,6 +6,9 @@ export default {
       profile: this.$auth.profile
     };
   },
+  created() {
+    this.$store.dispatch('GET_ALL_RECIPES')
+  },
   methods: {
     handleLoginEvent(data) {
       this.profile = data.profile;
