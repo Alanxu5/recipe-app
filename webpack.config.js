@@ -7,6 +7,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
+              modules: true,
               limit: 8192
             }
           }

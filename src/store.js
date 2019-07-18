@@ -85,5 +85,10 @@ export default new Vuex.Store({
         console.log(err);
       }
     }    
+  },
+  getters: {
+    getAllRecipes: state => {
+      return state.recipes
+    }
   }
 })
