@@ -1,16 +1,6 @@
-<template>
-  <div class="input-container">
-    <label>
-      {{ labelName }}
-    </label>
-    <input
-      v-model="inputVal">
-  </div>
-</template>
-
 <script>
 export default {
-  name: 'TextInput',
+  name: 'AppTextInput',
   props: {
     labelName: {
       type: String,
@@ -29,6 +19,16 @@ export default {
   }  
 }
 </script>
+
+<template>
+  <div class="input-container">
+    <label>
+      {{ labelName }}
+    </label>
+    <input
+      v-model="inputVal">
+  </div>
+</template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

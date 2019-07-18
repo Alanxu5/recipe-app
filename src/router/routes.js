@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // @ is an alias for src directory
-import Recipes from '@/components/Recipes.vue'
-import Home from '@/components/Home.vue'
-import Callback from '@/components/Callback.vue'
+import RecipesView from '@/router/RecipesView'
+import TheHome from '@/router/TheHome'
+import Callback from '@/router/Callback'
 
 // tells vue to use vue router
 Vue.use(Router)
@@ -15,12 +15,12 @@ export default new Router({
     {
       path: '/recipes',
       name: 'recipes',
-      component: Recipes
+      component: RecipesView
     },
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: TheHome
     },
     {
       path: '/callback',

@@ -1,10 +1,10 @@
 <script>
-import Card from '@/components/Card';
+import RecipeCard from '@/components/RecipeCard';
 
 export default {
-  name: 'Home',
+  name: 'TheHome',
   components: {
-    Card
+    RecipeCard
   },
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
 <template>
   <div :class="$style.home">
     <div :class="$style.container">
-      <Card
+      <RecipeCard
         v-for="(recipe, index) in recipes"
         :key="index"
         :recipe="recipe" />

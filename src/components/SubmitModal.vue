@@ -1,10 +1,10 @@
 <script>
-import TextInput from '@/components/common/TextInput'
+import AppTextInput from '@/components/common/AppTextInput'
 
 export default {
-  name: 'Submit',
+  name: 'SubmitModal',
   components: {
-    TextInput
+    AppTextInput
   },
   data() {
     return {
@@ -59,7 +59,7 @@ export default {
         <div class="top-container">
           <div class="image-upload" />          
           <div class="short-input">
-            <TextInput 
+            <AppTextInput 
               v-model="recipeModel.name"
               label-name="Name" />
             <div class="prep-container">
@@ -100,13 +100,13 @@ export default {
               </div>
             </div>                  
             <div class="time-input">
-              <TextInput 
+              <AppTextInput 
                 v-model="recipeModel.prepTime"
                 label-name="Prep Time" />
-              <TextInput 
+              <AppTextInput 
                 v-model="recipeModel.cookTime"
                 label-name="Cook Time" />
-              <TextInput 
+              <AppTextInput 
                 v-model="recipeModel.feeds"
                 label-name="Servings" />                
             </div>                  

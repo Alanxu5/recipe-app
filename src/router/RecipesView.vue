@@ -2,7 +2,7 @@
 import { mapState, mapMutations } from 'vuex'
 
 export default {
-  name: 'Recipes',
+  name: 'RecipesView',
   created() {
     // this.name = this.$route.params.recipeData.name;
     // this.description = this.$route.params.recipeData.description;

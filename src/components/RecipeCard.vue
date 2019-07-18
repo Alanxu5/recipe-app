@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Card",
+  name: "RecipeCard",
   props: {
     recipe: {
       type: Object,

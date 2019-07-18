@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ShortInput'
+  name: 'AppShortInput'
 }
 </script>
 

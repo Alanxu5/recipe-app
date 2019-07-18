@@ -1,10 +1,10 @@
 <script>
-import Submit from '@/components/Submit'
+import SubmitModal from '@/components/SubmitModal'
 
 export default {
   name: 'App',
   components: {
-    Submit
+    SubmitModal
   },
   data() {
     return {
@@ -81,7 +81,7 @@ export default {
       </div>
     </div>
     <RouterView />
-    <Submit 
+    <SubmitModal
       v-if="showModal"
       @closeModal="toggleModal" />
   </div>
