@@ -2,7 +2,7 @@
 import RecipeCard from '@/components/RecipeCard';
 
 export default {
-  name: 'TheHome',
+  name: 'HomeView',
   components: {
     RecipeCard
   },
@@ -17,7 +17,7 @@ export default {
     }
   },  
   created() {
-    this.$store.dispatch('GET_ALL_RECIPES')
+    this.$store.dispatch('getAllRecipes')
   },
   methods: {
     handleLoginEvent(data) {
@@ -40,7 +40,7 @@ export default {
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<!-- scoped bled into child when styles had the same naem -->
+<!-- scoped bled into child when styles had the same name -->
 <style module>
   .home {
     margin: .5rem;

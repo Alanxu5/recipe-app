@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 // @ is an alias for src directory
 import RecipesView from '@/router/RecipesView'
-import TheHome from '@/router/TheHome'
+import HomeView from '@/router/HomeView'
 import Callback from '@/router/Callback'
 
 // tells vue to use vue router
@@ -20,7 +20,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: TheHome
+      component: HomeView
     },
     {
       path: '/callback',

@@ -36,7 +36,7 @@ export default {
       };
       
       this.closeModal();
-      this.$store.dispatch('SUBMIT_NEW_RECIPE', recipe)
+      this.$store.dispatch('addRecipe', recipe)
     },
     closeModal() {
       this.$emit('closeModal');

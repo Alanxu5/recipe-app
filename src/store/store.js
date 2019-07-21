@@ -6,23 +6,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    recipe: [],
+    current_recipe: [],
     recipes: []
   },
   mutations: {
-    SUBMIT_RECIPE: (state, { recipe }) => {
-      state.recipe.push(recipe);
+    SET_RECIPE: (state, { recipe }) => {
+      state.current_recipe = recipe;
       router.push({name: 'recipes', params: { recipeData: recipe }});
     },
-    GET_RECIPE: (state, { recipe }) => {
-      router.push({name: 'recipe', params: { recipeDate: recipe }});
-    },
-    ADD_ALL_RECIPES: (state, { recipes }) => {
+    SET_ALL_RECIPES: (state, { recipes }) => {
       state.recipes = recipes;
     },
   },
   actions: {
-    SUBMIT_NEW_RECIPE: async function ({ commit }, recipe) {
+    addRecipe: async function ({ commit }, recipe) {
       try {
         // TODO: make it dynamic
         const response = await fetch('http://localhost:8000/recipes', {
@@ -36,7 +33,7 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('SUBMIT_RECIPE', {recipe: recipe})
+          commit('SET_RECIPE', {recipe: recipe})
         } else {
           console.log(response)
         }
@@ -44,28 +41,7 @@ export default new Vuex.Store({
         console.log(err);
       }
     }, 
-    GET_NEWEST_RECIPE: async function ({ commit }, recipe) {
-      try {
-        // TODO: make it dynamic
-        const response = await fetch('http://localhost:8000/recipes', {
-          method: "GET",
-          headers: { 
-            'Content-Type': 'application/json' 
-          },
-        });
-
-        const responseJson = await response.json();
-
-        if (response.ok) {
-          commit('GET_RECIPE', {recipe: recipe})
-        } else {
-          console.log(response)
-        }
-      } catch(err) {
-        console.log(err);
-      }      
-    },
-    GET_ALL_RECIPES: async function ({ commit }) {
+    getAllRecipes: async function ({ commit }) {
       try {
         const response = await fetch('http://localhost:8000/recipes', {
           method: "GET",
@@ -77,7 +53,7 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('ADD_ALL_RECIPES', {recipes: responseJson.recipes})
+          commit('SET_ALL_RECIPES', {recipes: responseJson.recipes})
         } else {
           console.log(response)
         }        
