@@ -1,12 +1,12 @@
 <script>
 import SubmitModal from '@/components/SubmitModal'
-import NavBar from '@/components/NavBar'
+import TheNavBar from '@/components/TheNavBar'
 
 export default {
   name: 'App',
   components: {
     SubmitModal,
-    NavBar
+    TheNavBar
   },
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
 
 <template>
   <div id="app">
-    <NavBar 
+    <TheNavBar 
       @toggleModal="toggleModal" />
     <RouterView />
     <SubmitModal

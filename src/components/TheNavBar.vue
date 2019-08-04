@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'NavBar',
+  name: 'TheNavBar',
   data() {
     return {
       isAuthenticated: false
@@ -36,17 +36,24 @@ export default {
     <div :class="$style.link">
       <RouterLink to="/">
         <a :class="$style.router">
-          Home
+          Protein
         </a>
       </RouterLink>
     </div>
     <div :class="$style.link">
-      <RouterLink to="/recipes">
+      <RouterLink to="/">
         <a :class="$style.router">
-          Recipes
+          Carb
         </a>
       </RouterLink>
     </div>
+    <div :class="$style.link">
+      <RouterLink to="/">
+        <a :class="$style.router">
+          Veggie
+        </a>
+      </RouterLink>
+    </div>         
     <div 
       :class="$style.link"
       @click="toggleModal">
@@ -71,7 +78,7 @@ export default {
 <style lang="scss" module>
 .header {
   display: grid;
-  grid-template-columns: minmax(2rem, 5%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) 1fr minmax(9rem, 15%);
+  grid-template-columns: minmax(2rem, 5%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) 1fr minmax(9rem, 15%);
   background-color: lightblue;
   height: 3rem;
 }
