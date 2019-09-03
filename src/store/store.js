@@ -53,7 +53,7 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('SET_ALL_RECIPES', {recipes: responseJson.recipes})
+          commit('SET_ALL_RECIPES', {recipes: responseJson})
         } else {
           console.log(response)
         }        
