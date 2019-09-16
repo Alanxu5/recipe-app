@@ -1,25 +1,14 @@
 <script>
-import { mapState, mapMutations } from 'vuex'
-
 export default {
-  name: 'RecipesView',
+  name: 'RecipeView',
+  computed: {
+    recipe() {
+      return this.$store.state.current_recipe;
+    }
+  },  
   created() {
-    // this.name = this.$route.params.recipeData.name;
-    // this.description = this.$route.params.recipeData.description;
-    // this.ingredients = this.$route.params.recipeData.ingredients;
-    // this.directions = this.$route.params.recipeData.directions;
-    // this.prepTime = this.$route.params.recipeData.prepTime;
-    // this.cookTime = this.$route.params.recipeData.cookTime;
-    // this.feeds = this.$route.params.recipeData.feeds;
-
-    this.name = "World's Best Lasagna";
-    this.description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawd. Chase QuickPay(R) with Zelle(SM) STEPHANIE HUA requested $409.56 Go to Chase.com/QP or the Chase app to Send Money. Message: Splitwise 4/24";
-    this.ingredients = "1 pound sweet Italian sausage\n3/4 pound lean ground beef\n1/2 cup minced onion\n2 cloves garlic, crushed";
-    this.directions = "In a Dutch oven, cook sausage, ground beef, onion, and garlic over medium heat until well browned. Stir in crushed tomatoes, tomato paste, tomato sauce, and water. Season with sugar, basil, fennel seeds, Italian seasoning, 1 tablespoon salt, pepper, and 2 tablespoons parsley. Simmer, covered, for about 1 1/2 hours, stirring occasionally.\nBring a large pot of lightly salted water to a boil. Cook lasagna noodles in boiling water for 8 to 10 minutes. Drain noodles, and rinse with cold water. In a mixing bowl, combine ricotta cheese with egg, remaining parsley, and 1/2 teaspoon salt.";
-    this.prepTime = "30 m";
-    this.cookTime = "2 h 30 m";
-    this.feeds = "5";
-  }
+    this.$store.dispatch('getRecipe', this.$route.query.id);
+  },
 }
 </script>
 
@@ -35,22 +24,22 @@ export default {
           </div>
           <div class="info">
             <div class="title">
-              {{ name }}
+              {{ recipe.name }}
             </div>
             <div class="subtext">
-              Prep: {{ prepTime }}
+              Prep: {{ recipe.prepTime }}
             </div>
             <div class="subtext"> 
-              Cook: {{ cookTime }}
+              Cook: {{ recipe.cookTime }}
             </div>
             <div class="subtext">
-              Servings: {{ feeds }}
+              Servings: {{ recipe.servings }}
             </div>
             <div class="subtext">
               Preparation: Oven
             </div>
             <div class="description">
-              Description: {{ description }}
+              Description: {{ recipe.description }}
             </div>
           </div>        
         </div>
@@ -59,13 +48,13 @@ export default {
             <div class="section-header">
               Ingredients
             </div>
-            <div>{{ ingredients }}</div>
+            <div>Hardcoded ingredients</div>
           </div>
           <div class="directions">
             <div class="section-header">
               Directions
             </div>
-            <div>{{ directions }}</div>
+            <div>Hardcoded directions</div>
           </div>
         </div>
       </div>

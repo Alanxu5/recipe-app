@@ -6,11 +6,18 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    recipeClicked() {
+      this.$emit('recipeClicked', this.recipe.id);
+    }
   }
 }
 </script>
 <template>
-  <div :class="$style.container">
+  <div 
+    :class="$style.container"
+    @click="recipeClicked">
     <div>
       <img 
         :class="$style.image"

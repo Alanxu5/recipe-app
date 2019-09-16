@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // @ is an alias for src directory
-import RecipesView from '@/router/RecipesView'
+import RecipeView from '@/router/RecipeView'
 import HomeView from '@/router/HomeView'
 import Callback from '@/router/Callback'
 
@@ -13,9 +13,9 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/recipes',
-      name: 'recipes',
-      component: RecipesView
+      path: '/recipe',
+      name: 'recipe',
+      component: RecipeView
     },
     {
       path: '/',

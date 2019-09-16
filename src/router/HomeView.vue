@@ -22,6 +22,9 @@ export default {
   methods: {
     handleLoginEvent(data) {
       this.profile = data.profile;
+    },
+    viewRecipe(id) {
+      this.$router.push({ name: 'recipe', query: { id: id } });
     }
   }  
 }
@@ -33,7 +36,8 @@ export default {
       <RecipeCard
         v-for="(recipe, index) in recipes"
         :key="index"
-        :recipe="recipe" />
+        :recipe="recipe" 
+        @recipeClicked="viewRecipe" />
     </div>
     <RouterView />
   </div>

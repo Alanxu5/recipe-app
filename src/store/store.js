@@ -12,7 +12,6 @@ export default new Vuex.Store({
   mutations: {
     SET_RECIPE: (state, { recipe }) => {
       state.current_recipe = recipe;
-      router.push({name: 'recipes', params: { recipeData: recipe }});
     },
     SET_ALL_RECIPES: (state, { recipes }) => {
       state.recipes = recipes;
@@ -33,7 +32,8 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('SET_RECIPE', {recipe: recipe})
+          commit('SET_RECIPE', { recipe: recipe });
+          router.push({ name: 'recipe' });
         } else {
           console.log(response)
         }
@@ -60,11 +60,34 @@ export default new Vuex.Store({
       } catch(err) {
         console.log(err);
       }
-    }    
+    },
+    getRecipe: async function ({ commit }, id) {
+      try {
+        const response = await fetch(`http://localhost:8000/recipe/${id}`, {
+          method: "GET",
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
+        });
+
+        const responseJson = await response.json();
+
+        if (response.ok) {
+          commit('SET_RECIPE', { recipe: responseJson });
+        } else {
+          console.log(response)
+        }        
+      } catch(err) {
+        console.log(err);
+      }
+    }
   },
   getters: {
     getAllRecipes: state => {
       return state.recipes
+    },
+    getRecipe: state => (id) => {
+      return state.recipes.find(recipe => recipe.id === id);
     }
   }
 })
