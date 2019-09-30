@@ -101,13 +101,13 @@ export default {
             </div>                  
             <div class="time-input">
               <AppTextInput 
-                v-model="recipeModel.prepTime"
+                v-model.number="recipeModel.prepTime"
                 label-name="Prep Time" />
               <AppTextInput 
-                v-model="recipeModel.cookTime"
+                v-model.number="recipeModel.cookTime"
                 label-name="Cook Time" />
               <AppTextInput 
-                v-model="recipeModel.feeds"
+                v-model.number="recipeModel.feeds"
                 label-name="Servings" />                
             </div>                  
           </div>

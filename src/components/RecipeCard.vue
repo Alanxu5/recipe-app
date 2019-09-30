@@ -40,9 +40,10 @@ export default {
 <style module>
   .container {
     display: grid;
-    height: 200px; 
-    width: 200px;
+    height: 300px; 
+    width: 300px;
     grid-template-rows: 70% 30%;
+    margin: .5rem;
   }
 
   .image {

@@ -46,12 +46,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <!-- scoped bled into child when styles had the same name -->
 <style module>
-  .home {
-    margin: .5rem;
-  }
-
   .container {
+    margin: 2rem 0 2rem 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+    align-items: center;
   }
 </style>

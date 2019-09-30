@@ -33,7 +33,7 @@ export default {
               Cook: {{ recipe.cookTime }}
             </div>
             <div class="subtext">
-              Servings: {{ recipe.servings }}
+              Servings: {{ recipe.feeds }}
             </div>
             <div class="subtext">
               Preparation: Oven

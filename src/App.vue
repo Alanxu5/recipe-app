@@ -32,14 +32,16 @@ export default {
   <div id="app">
     <TheNavBar 
       @toggleModal="toggleModal" />
-    <RouterView />
+    <div :class="$style.router">
+      <RouterView />
+    </div>
     <SubmitModal
       v-if="showModal"
       @closeModal="toggleModal" />
   </div>
 </template>
 
-<style>
+<style module>
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 #app {
@@ -56,5 +58,10 @@ html, body {
 a:-webkit-any-link {
   color: black;
   text-decoration-line: none;
+}
+
+.router {
+  max-width: 110rem;
+  margin: 0 auto
 }
 </style>

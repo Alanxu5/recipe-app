@@ -79,7 +79,6 @@ export default {
 .header {
   display: grid;
   grid-template-columns: minmax(2rem, 5%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) 1fr minmax(9rem, 15%);
-  background-color: lightblue;
   height: 3rem;
 }
 
