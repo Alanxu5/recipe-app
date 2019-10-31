@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     current_recipe: [],
-    recipes: []
+    recipes: [],
+    types: []
   },
   mutations: {
     SET_RECIPE: (state, { recipe }) => {
@@ -22,7 +23,7 @@ export default new Vuex.Store({
       try {
         // TODO: make it dynamic
         const response = await fetch('http://localhost:8000/recipes', {
-          method: "POST",
+          method: 'POST',
           headers: { 
             'Content-Type': 'application/json' 
           },
@@ -33,7 +34,7 @@ export default new Vuex.Store({
 
         if (response.ok) {
           commit('SET_RECIPE', { recipe: recipe });
-          router.push({ name: 'recipe' });
+          router.push({ name: 'recipe', query: { id: responseJson } });
         } else {
           console.log(response)
         }
@@ -63,7 +64,7 @@ export default new Vuex.Store({
     },
     getRecipe: async function ({ commit }, id) {
       try {
-        const response = await fetch(`http://localhost:8000/recipe/${id}`, {
+        const response = await fetch(`http://localhost:8000/recipes/${id}`, {
           method: "GET",
           headers: { 
             'Content-Type': 'application/json' 
@@ -78,6 +79,26 @@ export default new Vuex.Store({
           console.log(response)
         }        
       } catch(err) {
+        console.log(err);
+      }
+    },
+    getRecipeTypes: async function ({ commit }) {
+      try {
+        const response = await fetch(`http://localhost:8000/recipes/types`, {
+          method: "GET",
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
+        });
+
+        const responseJson = await response.json();
+
+        if (response.ok) {
+          console.log(responseJson);
+        } else {
+          console.log(response)
+        }   
+      } catch (err) {
         console.log(err);
       }
     }

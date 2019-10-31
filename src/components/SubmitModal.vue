@@ -20,23 +20,15 @@ export default {
         type: 1
       }
     }
+  },  
+  mounted() {
+    this.$store.dispatch('getRecipeTypes');
+    // this.$store.dispatch('getMethodTypes');
   },
   methods: {
     submitRecipe() {
-      const recipe = {
-        name: this.recipeModel.name,
-        description: this.recipeModel.description,
-        ingredients: this.recipeModel.ingredients,
-        directions: this.recipeModel.directions,
-        prepTime: this.recipeModel.prepTime,
-        cookTime: this.recipeModel.cookTime,
-        feeds: this.recipeModel.feeds,
-        method: this.recipeModel.method,
-        type: this.recipeModel.type
-      };
-      
       this.closeModal();
-      this.$store.dispatch('addRecipe', recipe)
+      this.$store.dispatch('addRecipe', this.recipeModel)
     },
     closeModal() {
       this.$emit('closeModal');
@@ -65,7 +57,7 @@ export default {
             <div class="prep-container">
               <div>
                 <label>
-                  Category 
+                  Type 
                 </label>
                 <select class="prep-input">
                   <option value="protein">
@@ -81,7 +73,7 @@ export default {
               </div>
               <div>
                 <label>
-                  Preperation 
+                  Method 
                 </label>
                 <select class="prep-input">
                   <option value="bake">
