@@ -20,6 +20,11 @@ export default {
         type: 1
       }
     }
+  },
+  computed: {
+    recipeTypes() {
+      return this.$store.getters.getRecipeTypes;
+    }
   },  
   mounted() {
     this.$store.dispatch('getRecipeTypes');
@@ -33,7 +38,7 @@ export default {
     closeModal() {
       this.$emit('closeModal');
     }
-  },
+  }
 }
 </script>
 
@@ -59,15 +64,14 @@ export default {
                 <label>
                   Type 
                 </label>
-                <select class="prep-input">
-                  <option value="protein">
-                    Protein
-                  </option>
-                  <option value="vegetable">
-                    Vegetable
-                  </option>
-                  <option value="carbohydrate">
-                    Carbohydrates
+                <select
+                  v-model="recipeModel.type" 
+                  class="prep-input">
+                  <option 
+                    v-for="type in recipeTypes"
+                    :key="type.id"
+                    :value="type.id">
+                    {{ type.name }}
                   </option>
                 </select>
               </div>

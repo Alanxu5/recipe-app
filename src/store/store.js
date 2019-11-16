@@ -17,6 +17,9 @@ export default new Vuex.Store({
     SET_ALL_RECIPES: (state, { recipes }) => {
       state.recipes = recipes;
     },
+    SET_RECIPE_TYPES: (state, { types }) => {
+      state.types = types;
+    }   
   },
   actions: {
     addRecipe: async function ({ commit }, recipe) {
@@ -94,6 +97,7 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
+          commit('SET_RECIPE_TYPES', { types: responseJson }); 
           console.log(responseJson);
         } else {
           console.log(response)
@@ -109,6 +113,9 @@ export default new Vuex.Store({
     },
     getRecipe: state => (id) => {
       return state.recipes.find(recipe => recipe.id === id);
-    }
+    },
+    getRecipeTypes: state => {
+      return state.types;
+    } 
   }
 })
