@@ -24,11 +24,14 @@ export default {
   computed: {
     recipeTypes() {
       return this.$store.getters.getRecipeTypes;
+    },
+    recipeMethods() {
+      return this.$store.getters.getRecipeMethods;
     }
   },  
   mounted() {
     this.$store.dispatch('getRecipeTypes');
-    // this.$store.dispatch('getMethodTypes');
+    this.$store.dispatch('getMethodTypes');
   },
   methods: {
     submitRecipe() {
@@ -79,18 +82,14 @@ export default {
                 <label>
                   Method 
                 </label>
-                <select class="prep-input">
-                  <option value="bake">
-                    Bake
-                  </option>
-                  <option value="pan">
-                    Pan
-                  </option>
-                  <option value="pressureCooker">
-                    Pressure Cooker
-                  </option>                
-                  <option value="slowCooker">
-                    Slow Cooker
+                <select
+                  v-model="recipeModel.method" 
+                  class="prep-input">
+                  <option 
+                    v-for="method in recipeMethods"
+                    :key="method.id"
+                    :value="method.id">
+                    {{ method.name }}
                   </option>
                 </select>
               </div>

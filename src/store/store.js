@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     current_recipe: [],
     recipes: [],
-    types: []
+    types: [],
+    methods: []
   },
   mutations: {
     SET_RECIPE: (state, { recipe }) => {
@@ -19,7 +20,10 @@ export default new Vuex.Store({
     },
     SET_RECIPE_TYPES: (state, { types }) => {
       state.types = types;
-    }   
+    },   
+    SET_RECIPE_METHODS: (state, { methods }) => {
+      state.methods = methods;
+    }
   },
   actions: {
     addRecipe: async function ({ commit }, recipe) {
@@ -105,6 +109,27 @@ export default new Vuex.Store({
       } catch (err) {
         console.log(err);
       }
+    },
+    getMethodTypes: async function ({ commit }) {
+      try {
+        const response = await fetch(`http://localhost:8000/recipes/methods`, {
+          method: "GET",
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
+        });
+
+        const responseJson = await response.json();
+
+        if (response.ok) {
+          commit('SET_RECIPE_METHODS', { methods: responseJson }); 
+          console.log(responseJson);
+        } else {
+          console.log(response)
+        }   
+      } catch (err) {
+        console.log(err);
+      }
     }
   },
   getters: {
@@ -116,6 +141,9 @@ export default new Vuex.Store({
     },
     getRecipeTypes: state => {
       return state.types;
-    } 
+    },
+    getRecipeMethods: state => {
+      return state.methods;
+    }
   }
 })
