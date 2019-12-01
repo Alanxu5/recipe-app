@@ -29,6 +29,8 @@ export default new Vuex.Store({
     addRecipe: async function ({ commit }, recipe) {
       try {
         // TODO: make it dynamic
+        // logic to put ingredients into an object
+        
         const response = await fetch('http://localhost:8000/recipes', {
           method: 'POST',
           headers: { 

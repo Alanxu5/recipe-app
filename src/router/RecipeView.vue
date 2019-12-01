@@ -36,7 +36,7 @@ export default {
               Servings: {{ recipe.feeds }}
             </div>
             <div class="subtext">
-              Method: Oven
+              Method: {{ recipe.method }}
             </div>
             <div class="description">
               Description: {{ recipe.description }}

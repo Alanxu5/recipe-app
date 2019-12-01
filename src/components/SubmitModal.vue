@@ -9,14 +9,14 @@ export default {
   data() {
     return {
       recipeModel: {
-        name: "",
-        description: "",
-        ingredients: "",
-        directions: {'data': '3'},
+        name: '',
+        description: '',
+        ingredients: '',
+        directions: {},
         prepTime: 0,
         cookTime: 0,
         feeds: 0,
-        method: 1,
+        method: 'Oven',
         type: 1
       }
     }
@@ -88,7 +88,7 @@ export default {
                   <option 
                     v-for="method in recipeMethods"
                     :key="method.id"
-                    :value="method.id">
+                    :value="method.name">
                     {{ method.name }}
                   </option>
                 </select>
