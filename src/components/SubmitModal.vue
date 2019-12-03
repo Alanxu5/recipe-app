@@ -12,12 +12,12 @@ export default {
         name: '',
         description: '',
         ingredients: '',
-        directions: {},
+        directions: '',
         prepTime: 0,
         cookTime: 0,
         feeds: 0,
         method: 'Oven',
-        type: 1
+        type: 'Protein'
       }
     }
   },
@@ -73,7 +73,7 @@ export default {
                   <option 
                     v-for="type in recipeTypes"
                     :key="type.id"
-                    :value="type.id">
+                    :value="type.name">
                     {{ type.name }}
                   </option>
                 </select>

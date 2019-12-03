@@ -4,6 +4,9 @@ export default {
   computed: {
     recipe() {
       return this.$store.state.current_recipe;
+    },
+    dirArr() {
+      return Object.values(this.$store.state.current_recipe).length === 0 ? [] : Object.values(this.$store.state.current_recipe.directions) 
     }
   },  
   created() {
@@ -38,6 +41,9 @@ export default {
             <div class="subtext">
               Method: {{ recipe.method }}
             </div>
+            <div class="subtext">
+              Type: {{ recipe.type }}
+            </div>
             <div class="description">
               Description: {{ recipe.description }}
             </div>
@@ -54,7 +60,11 @@ export default {
             <div class="section-header">
               Directions
             </div>
-            <div>Hardcoded directions</div>
+            <div
+              v-for="(direction, index) in dirArr"
+              :key="index">
+              {{ index + 1 }}. {{ direction }}
+            </div>
           </div>
         </div>
       </div>

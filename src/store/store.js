@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    current_recipe: [],
+    current_recipe: {},
     recipes: [],
     types: [],
     methods: []
@@ -29,8 +29,9 @@ export default new Vuex.Store({
     addRecipe: async function ({ commit }, recipe) {
       try {
         // TODO: make it dynamic
-        // logic to put ingredients into an object
-        
+        const directionArr = recipe.directions.split(/\n/);
+        const directionObj = { ...directionArr };
+        recipe.directions = directionObj;
         const response = await fetch('http://localhost:8000/recipes', {
           method: 'POST',
           headers: { 
