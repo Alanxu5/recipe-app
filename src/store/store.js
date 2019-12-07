@@ -38,7 +38,7 @@ export default new Vuex.Store({
         const ingredientObjArr = ingredientArr.map(ingredient => {
           const value = ingredient.split('|');
           return {
-            amount: value[0] ? value[0].trim() : value[0],
+            amount: parseFloat(value[0] ? value[0].trim() : value[0]),
             unit: value[1] ? value[1].trim() : value[1],
             ingredient: value[2] ? value[2].trim() : value[2],
             preparation: value[3] ? value[3].trim() : value[3]
