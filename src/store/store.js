@@ -33,14 +33,15 @@ export default new Vuex.Store({
         const directionObj = { ...directionArr };
         recipe.directions = directionObj;
 
+        // TODO[AX]: get ingredient list data in a better way 
         const ingredientArr = recipe.ingredients.split(/\n/);
         const ingredientObjArr = ingredientArr.map(ingredient => {
           const value = ingredient.split('|');
           return {
-            amount: value[0].trim(),
-            unit: value[1].trim(),
-            ingredient: value[2].trim(),
-            preparation: value[3].trim()
+            amount: value[0] ? value[0].trim() : value[0],
+            unit: value[1] ? value[1].trim() : value[1],
+            ingredient: value[2] ? value[2].trim() : value[2],
+            preparation: value[3] ? value[3].trim() : value[3]
           }
         })
         recipe.ingredients = ingredientObjArr;

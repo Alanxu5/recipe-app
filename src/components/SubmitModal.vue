@@ -15,8 +15,8 @@ export default {
         directions: '',
         prepTime: 0,
         cookTime: 0,
-        feeds: 0,
-        method: 'Oven',
+        servings: 0,
+        method: 'Pan',
         type: 'Protein'
       }
     }
@@ -102,7 +102,7 @@ export default {
                 v-model.number="recipeModel.cookTime"
                 label-name="Cook Time" />
               <AppTextInput 
-                v-model.number="recipeModel.feeds"
+                v-model.number="recipeModel.servings"
                 label-name="Servings" />                
             </div>                  
           </div>
