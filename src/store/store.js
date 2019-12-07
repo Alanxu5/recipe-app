@@ -32,6 +32,19 @@ export default new Vuex.Store({
         const directionArr = recipe.directions.split(/\n/);
         const directionObj = { ...directionArr };
         recipe.directions = directionObj;
+
+        const ingredientArr = recipe.ingredients.split(/\n/);
+        const ingredientObjArr = ingredientArr.map(ingredient => {
+          const value = ingredient.split('|');
+          return {
+            amount: value[0].trim(),
+            unit: value[1].trim(),
+            ingredient: value[2].trim(),
+            preparation: value[3].trim()
+          }
+        })
+        recipe.ingredients = ingredientObjArr;
+        
         const response = await fetch('http://localhost:8000/recipes', {
           method: 'POST',
           headers: { 

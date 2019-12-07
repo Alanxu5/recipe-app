@@ -114,7 +114,7 @@ export default {
               v-model="recipeModel.description" />
           </div>
           <div class="textarea-container">
-            <label>Ingredients</label>
+            <label>Ingredients - Amount|Unit|Ingredient|Preparation</label>
             <textarea
               v-model="recipeModel.ingredients" />
           </div>
