@@ -28,7 +28,6 @@ export default new Vuex.Store({
   actions: {
     addRecipe: async function ({ commit }, recipe) {
       try {
-        // TODO: make it dynamic
         const directionArr = recipe.directions.split(/\n/);
         const directionObj = { ...directionArr };
         recipe.directions = directionObj;
@@ -45,6 +44,17 @@ export default new Vuex.Store({
           }
         })
         recipe.ingredients = ingredientObjArr;
+
+        const equipmentArr = recipe.equipment.split(/\n/);
+        const equipmentObjArr = equipmentArr.map(equipment => {
+          const value = equipment.split('|');
+          return {
+            description: value[0] ? value[0].trim() : value[0],
+            item: value[1] ? value[1].trim() : value[1],
+          }
+        })
+
+        recipe.equipment = equipmentObjArr;
         
         const response = await fetch('http://localhost:8000/recipes', {
           method: 'POST',

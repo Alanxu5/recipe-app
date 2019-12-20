@@ -12,6 +12,7 @@ export default {
       //   name: '',
       //   description: '',
       //   ingredients: '',
+      //   equipment: '',
       //   directions: '',
       //   prepTime: 0,
       //   cookTime: 0,
@@ -22,6 +23,7 @@ export default {
       recipeModel: {
         name: 'Test Recipe Name',
         description: 'Test Description',
+        equipment: '',
         ingredients: '',
         directions: 'Dir 1',
         prepTime: 10,
@@ -123,6 +125,11 @@ export default {
             <label>Description</label>
             <textarea
               v-model="recipeModel.description" />
+          </div>
+          <div class="textarea-container">
+            <label>Equipment - Description|Item</label>
+            <textarea
+              v-model="recipeModel.equipment" />
           </div>
           <div class="textarea-container">
             <label>Ingredients - Amount|Unit|Ingredient|Preparation</label>
