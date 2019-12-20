@@ -54,7 +54,16 @@ export default {
             <div class="section-header">
               Ingredients
             </div>
-            <div>Hardcoded ingredients</div>
+            <div 
+              v-for="(ingredient, index) in recipe.ingredients"
+              :key="index">
+              <div v-if="ingredient.preparation">
+                {{ index + 1 }}. {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.ingredient }}, {{ ingredient.preparation }}
+              </div>
+              <div v-else>
+                {{ index + 1 }}. {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.ingredient }} 
+              </div>
+            </div>
           </div>
           <div class="directions">
             <div class="section-header">

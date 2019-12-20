@@ -8,14 +8,25 @@ export default {
   },
   data() {
     return {
+      // recipeModel: {
+      //   name: '',
+      //   description: '',
+      //   ingredients: '',
+      //   directions: '',
+      //   prepTime: 0,
+      //   cookTime: 0,
+      //   servings: 0,
+      //   method: 'Pan',
+      //   type: 'Protein'
+      // }
       recipeModel: {
-        name: '',
-        description: '',
+        name: 'Test Recipe Name',
+        description: 'Test Description',
         ingredients: '',
-        directions: '',
-        prepTime: 0,
-        cookTime: 0,
-        servings: 0,
+        directions: 'Dir 1',
+        prepTime: 10,
+        cookTime: 20,
+        servings: 30,
         method: 'Pan',
         type: 'Protein'
       }
