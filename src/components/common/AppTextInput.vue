@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <div class="input-container">
+  <div :class="$style.inputContainer">
     <label>
       {{ labelName }}
     </label>
@@ -30,9 +30,8 @@ export default {
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .input-container {
+<style lang="scss" module>
+  .inputContainer {
     display: grid;
     grid-row-gap: 5px;
     grid-template-rows: 20px 30px;

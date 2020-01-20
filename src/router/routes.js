@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// @ is an alias for src directory
 import RecipeView from '@/router/RecipeView'
 import HomeView from '@/router/HomeView'
 import Callback from '@/router/Callback'

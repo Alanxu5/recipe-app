@@ -60,29 +60,29 @@ export default {
 
 <template>
   <div>
-    <div class="submit-modal">
-      <div class="modal-header">
+    <div :class="$style.submitModal">
+      <div :class="$style.modalHeader">
         <i 
           class="material-icons"
           @click="closeModal">
           close
         </i>
       </div>
-      <div class="container">
-        <div class="top-container">
-          <div class="image-upload" />          
-          <div class="short-input">
+      <div :class="$style.container">
+        <div :class="$style.topContainer">
+          <div :class="$style.imageUpload" />          
+          <div :class="$style.shortInput">
             <AppTextInput 
               v-model="recipeModel.name"
               label-name="Name" />
-            <div class="prep-container">
+            <div :class="$style.prepContainer">
               <div>
                 <label>
                   Type 
                 </label>
                 <select
                   v-model="recipeModel.type" 
-                  class="prep-input">
+                  :class="$style.prepInput">
                   <option 
                     v-for="type in recipeTypes"
                     :key="type.id"
@@ -97,7 +97,7 @@ export default {
                 </label>
                 <select
                   v-model="recipeModel.method" 
-                  class="prep-input">
+                  :class="$style.prepInput">
                   <option 
                     v-for="method in recipeMethods"
                     :key="method.id"
@@ -107,7 +107,7 @@ export default {
                 </select>
               </div>
             </div>                  
-            <div class="time-input">
+            <div :class="$style.timeInput">
               <AppTextInput 
                 v-model.number="recipeModel.prepTime"
                 label-name="Prep Time" />
@@ -120,28 +120,28 @@ export default {
             </div>                  
           </div>
         </div>
-        <div class="bottom-container">
-          <div class="textarea-container">
+        <div :class="$style.bottomContainer">
+          <div :class="$style.textareaContainer">
             <label>Description</label>
             <textarea
               v-model="recipeModel.description" />
           </div>
-          <div class="textarea-container">
+          <div :class="$style.textareaContainer">
             <label>Equipment - Description|Item</label>
             <textarea
               v-model="recipeModel.equipment" />
           </div>
-          <div class="textarea-container">
+          <div :class="$style.textareaContainer">
             <label>Ingredients - Amount|Unit|Ingredient|Preparation</label>
             <textarea
               v-model="recipeModel.ingredients" />
           </div>
-          <div class="textarea-container">
+          <div :class="$style.textareaContainer">
             <label>Directions</label>
             <textarea
               v-model="recipeModel.directions" />
           </div>         
-          <div class="submit-container">
+          <div :class="$style.submitContainer">
             <button
               type="button"
               @click="submitRecipe">
@@ -151,13 +151,12 @@ export default {
         </div>
       </div>
     </div>
-    <div class="modal-background" />
+    <div :class="$style.modalBackground" />
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.submit-modal {
+<style lang="scss" module>
+.submitModal {
   background: white;
   position: fixed;
   top: 50%;
@@ -170,7 +169,7 @@ export default {
   padding: 24px 24px 24px 24px;
 }
 
-.modal-header {
+.modalHeader {
   position: absolute;
   top: .5rem;
   right: .5rem; 
@@ -192,37 +191,37 @@ export default {
   grid-row-gap: 1rem;
 }
 
-.top-container {
+.topContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.image-upload {
+.imageUpload {
   height: 100%;
   width: 90%;
   background-color: lightgray;
   border: 1px solid #D5D1D1;
 }
 
-.textarea-container {
+.textareaContainer {
   display: grid;
   grid-row-gap: 5px;
   grid-template-rows: 20px 1fr;
 }
 
-.short-input {
+.shortInput {
   display: grid;
   grid-template-rows: auto auto auto;
   grid-row-gap: auto;
 }
 
-.time-input {
+.timeInput {
   display: grid;
   grid-template-columns: 100px 100px 100px;
   column-gap: 1rem;
 }
 
-.prep-container {
+.prepContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: .5rem;
@@ -232,11 +231,11 @@ select {
   width: 100%;
 }
 
-.prep-input {
+.prepInput {
   height: 30px;
 }
 
-.bottom-container {
+.bottomContainer {
   display: grid;
   grid-row-gap: 10px;
 }
@@ -257,12 +256,12 @@ textarea {
   resize: none;
 }
 
-.submit-container {
+.submitContainer {
   align-self: center;
   justify-self: end;
 }
 
-.modal-background {
+.modalBackground {
   background: rgba(0, 0, 0, .30);
   height: 100%;
   width: 100%;

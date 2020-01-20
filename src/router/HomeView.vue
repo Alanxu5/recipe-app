@@ -39,13 +39,10 @@ export default {
         :recipe="recipe" 
         @recipeClicked="viewRecipe" />
     </div>
-    <RouterView />
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<!-- scoped bled into child when styles had the same name -->
-<style module>
+<style lang="scss" module>
   .container {
     margin: 2rem 0 2rem 0;
     display: grid;

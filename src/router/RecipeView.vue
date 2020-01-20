@@ -16,42 +16,42 @@ export default {
 </script>
 
 <template>
-  <div class="recipe-container">
+  <div :class="$style.recipeContainer">
     <div>
-      <div class="container">
-        <div class="summary">
-          <div class="image-container">
+      <div :class="$style.container">
+        <div :class="$style.summary">
+          <div :class="$style.imageContainer">
             <img 
-              class="image"
+              :class="$style.image"
               src="@/assets/images/IMG_2298.jpg">
           </div>
-          <div class="info">
-            <div class="title">
+          <div :class="$style.info">
+            <div :class="$style.title">
               {{ recipe.name }}
             </div>
-            <div class="subtext">
+            <div :class="$style.subtext">
               Prep: {{ recipe.prepTime }}
             </div>
-            <div class="subtext"> 
+            <div :class="$style.subtext"> 
               Cook: {{ recipe.cookTime }}
             </div>
-            <div class="subtext">
+            <div :class="$style.subtext">
               Servings: {{ recipe.servings }}
             </div>
-            <div class="subtext">
+            <div :class="$style.subtext">
               Method: {{ recipe.method }}
             </div>
-            <div class="subtext">
+            <div :class="$style.subtext">
               Type: {{ recipe.type }}
             </div>
-            <div class="description">
+            <div :class="$style.description">
               Description: {{ recipe.description }}
             </div>
           </div>        
         </div>
-        <div class="instructions">
-          <div class="ingredients">
-            <div class="section-header">
+        <div :class="$style.instructions">
+          <div :class="$style.ingredients">
+            <div :class="$style.sectionHeader">
               Ingredients
             </div>
             <div 
@@ -65,8 +65,8 @@ export default {
               </div>
             </div>
           </div>
-          <div class="directions">
-            <div class="section-header">
+          <div :class="$style.directions">
+            <div :class="$style.sectionHeader">
               Directions
             </div>
             <div
@@ -78,15 +78,14 @@ export default {
         </div>
       </div>
     </div>
-    <div class="other-recipes">
+    <div :class="$style.otherRecipes">
       OTHER RECIPES
     </div>
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .recipe-container {
+<style lang="scss" module>
+  .recipeContainer {
     margin: 1.5rem 4rem 3rem 7rem;
     display: grid;
     grid-template-columns: 75% 1fr;
@@ -127,7 +126,7 @@ export default {
     margin-top: -7px;
   }
 
-  .image-container {
+  .imageContainer {
 
   }
 
@@ -147,7 +146,7 @@ export default {
 
   }
 
-  .section-header {
+  .sectionHeader {
     font-size: 1.5rem;
   }
 
@@ -155,7 +154,7 @@ export default {
 
   }
 
-  .other-recipes {
+  .otherRecipes {
     background-color: lightgray;
   }
 </style>
