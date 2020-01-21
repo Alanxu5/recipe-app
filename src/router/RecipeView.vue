@@ -7,6 +7,17 @@ export default {
     },
     dirArr() {
       return Object.values(this.$store.state.current_recipe).length === 0 ? [] : Object.values(this.$store.state.current_recipe.directions) 
+    },
+    imgFileName() {
+      let img = '';
+      if (this.recipe.type === 'Protein') {
+        img = 'IMG_2825';
+      } else if (this.recipe.type === 'Vegetable') {
+        img = 'IMG_2838';
+      } else {
+        img = 'IMG_9939';
+      }
+      return img;
     }
   },  
   created() {
@@ -23,7 +34,7 @@ export default {
           <div :class="$style.imageContainer">
             <img 
               :class="$style.image"
-              src="@/assets/images/IMG_2298.jpg">
+              :src="require(`@/assets/images/${imgFileName}.jpg`)">
           </div>
           <div :class="$style.info">
             <div :class="$style.title">

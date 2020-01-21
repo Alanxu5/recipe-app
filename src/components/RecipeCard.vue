@@ -7,6 +7,19 @@ export default {
       required: true
     }
   },
+  computed: {
+    imgFileName() {
+      let img = '';
+      if (this.recipe.type === "1") {
+        img = 'IMG_2825';
+      } else if (this.recipe.type === "3") {
+        img = 'IMG_2838';
+      } else {
+        img = 'IMG_9939';
+      }
+      return img;
+    }
+  },
   methods: {
     recipeClicked() {
       this.$emit('recipeClicked', this.recipe.id);
@@ -21,7 +34,7 @@ export default {
     <div>
       <img 
         :class="$style.image"
-        src="@/assets/images/IMG_2298.jpg">
+        :src="require(`@/assets/images/${imgFileName}.jpg`)">
     </div>
     <div>
       <div :class="$style.name">
