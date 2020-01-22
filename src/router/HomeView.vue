@@ -43,10 +43,21 @@ export default {
 </template>
 
 <style lang="scss" module>
+  @media screen 
+    and (min-device-width: 1200px) 
+    and (max-device-width: 1600px) 
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (min-resolution: 192dpi) { 
+      .container {
+        max-width: 1100px;
+      }
+  }
+
   .container {
-    margin: 2rem 0 2rem 0;
+    margin: 3rem auto 3rem auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     align-items: center;
+    justify-items: center;
   }
 </style>

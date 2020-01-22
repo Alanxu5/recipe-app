@@ -36,7 +36,8 @@ export default {
         :class="$style.image"
         :src="require(`@/assets/images/${imgFileName}.jpg`)">
     </div>
-    <div>
+    <div
+      :class="$style.information">
       <div :class="$style.name">
         {{ recipe.name }}
       </div>
@@ -53,16 +54,21 @@ export default {
 <style module>
   .container {
     display: grid;
-    height: 300px; 
-    width: 300px;
+    height: 350px; 
+    width: 250px;
     grid-template-rows: 70% 30%;
-    margin: .5rem;
+    margin-left: 8px;
+    margin-right: 8px;
   }
 
   .image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .information {
+    margin-top: .5rem;
   }
 
   .name {
