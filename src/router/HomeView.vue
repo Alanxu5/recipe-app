@@ -43,14 +43,25 @@ export default {
 </template>
 
 <style lang="scss" module>
-  @media screen 
-    and (min-device-width: 1200px) 
-    and (max-device-width: 1600px) 
-    and (-webkit-min-device-pixel-ratio: 2)
-    and (min-resolution: 192dpi) { 
-      .container {
-        max-width: 1100px;
-      }
+  @media only screen and (min-width: 992px) {
+    // 250 * 3 = 750 ... 800 - 750 = 50px
+    .container {
+      max-width: 800px;
+    }
+  }
+
+  @media only screen and (min-width: 1300px) {
+    // 250 * 4 = 1000 ... 1000 - 925 = 75px
+    .container {
+      max-width: 1075px;
+    }
+  }
+  
+  @media only screen and (min-width: 1600px) {
+    // 250 * 5 = 1250 ... 1350 - 1250 = 100px
+    .container {
+      max-width: 1350px;
+    }
   }
 
   .container {

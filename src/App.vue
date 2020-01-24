@@ -61,7 +61,6 @@ a:-webkit-any-link {
 }
 
 .router {
-  max-width: 110rem;
   margin: 0 auto
 }
 </style>
