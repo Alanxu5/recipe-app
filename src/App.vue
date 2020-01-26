@@ -42,7 +42,7 @@ export default {
 </template>
 
 <style module>
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
 
 #app {
   font-family: 'Roboto Condensed', sans-serif;
@@ -52,7 +52,7 @@ export default {
 }
 
 html, body {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 a:-webkit-any-link {
