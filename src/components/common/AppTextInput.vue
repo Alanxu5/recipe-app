@@ -22,11 +22,13 @@ export default {
 
 <template>
   <div :class="$style.inputContainer">
-    <label>
+    <label 
+      :class="$style.textLabel">
       {{ labelName }}
     </label>
     <input
-      v-model="inputVal">
+      v-model="inputVal"
+      :class="$style.textInput">
   </div>
 </template>
 
@@ -37,11 +39,11 @@ export default {
     grid-template-rows: 20px 30px;
   }
 
-  label {
+  .textLabel {
     width: 100%;
   }
 
-  input {
+  .textInput {
     width: 100%;
     padding: 0;
   }

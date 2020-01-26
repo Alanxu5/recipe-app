@@ -9,7 +9,7 @@ export default {
   },
   computed: {
     imgFileName() {
-      let img = '';
+      let img;
       if (this.recipe.type === "1") {
         img = 'IMG_2825';
       } else if (this.recipe.type === "3") {
@@ -18,6 +18,28 @@ export default {
         img = 'IMG_9939';
       }
       return img;
+    },
+    typeIcon() {
+      let icon;
+      if (this.recipe.type === "1") {
+        icon = 'meat';
+      } else if (this.recipe.type === "3") {
+        icon = 'broccoli';
+      } else {
+        icon = 'potato';
+      }
+      return icon;
+    },
+    methodIcon() {
+      let icon;
+      if (this.recipe.type === "1") {
+        icon = 'pan';
+      } else if (this.recipe.type === "3") {
+        icon = 'pot';
+      } else {
+        icon = 'oven';
+      }
+      return icon; 
     }
   },
   methods: {
@@ -41,11 +63,23 @@ export default {
       <div :class="$style.name">
         {{ recipe.name }}
       </div>
-      <div>
-        {{ recipe.prepTime + recipe.cookTime }} 
-      </div>
-      <div>
-        {{ recipe.servings }}
+      <div :class="$style.info">
+        <!-- <div>
+          {{ recipe.prepTime + recipe.cookTime }} min 
+        </div> -->
+        <div>
+          <img 
+            :class="$style.icon"
+            :src="require(`@/assets/icons/${methodIcon}.png`)">
+        </div>
+        <div>
+          <img 
+            :class="$style.typeIcon"
+            :src="require(`@/assets/icons/${typeIcon}.png`)">
+        </div>
+        <!-- <div>
+          Aprons
+        </div> -->
       </div>
     </div>
   </div>
@@ -65,13 +99,29 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .icon {
+    width: 35px;
+    height: 35px;
   }
 
+  .typeIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
   .information {
     margin-top: .5rem;
   }
 
+  .info {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+  }
+
   .name {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 </style>

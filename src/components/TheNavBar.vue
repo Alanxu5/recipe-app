@@ -28,38 +28,14 @@ export default {
   <div :class="$style.header">
     <div :class="$style.icon">
       <RouterLink to="/">
-        <a :class="$style.router">
-          Icon
-        </a>
+        Icon
       </RouterLink>
     </div>
-    <div :class="$style.link">
-      <RouterLink to="/">
-        <a :class="$style.router">
-          Protein
-        </a>
-      </RouterLink>
-    </div>
-    <div :class="$style.link">
-      <RouterLink to="/">
-        <a :class="$style.router">
-          Carb
-        </a>
-      </RouterLink>
-    </div>
-    <div :class="$style.link">
-      <RouterLink to="/">
-        <a :class="$style.router">
-          Veggie
-        </a>
-      </RouterLink>
-    </div>         
     <div 
       :class="$style.link"
       @click="toggleModal">
       Submit
     </div>
-    <div />
     <div
       v-if="isAuthenticated"
       :class="$style.link"
@@ -78,7 +54,7 @@ export default {
 <style lang="scss" module>
 .header {
   display: grid;
-  grid-template-columns: minmax(2rem, 5%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) minmax(9rem, 15%) 1fr minmax(9rem, 15%);
+  grid-template-columns: 100px 100px 100px; 
   height: 3rem;
 }
 

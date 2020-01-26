@@ -42,10 +42,6 @@ export default {
       return this.$store.getters.getRecipeMethods;
     }
   },  
-  mounted() {
-    this.$store.dispatch('getRecipeTypes');
-    this.$store.dispatch('getMethodTypes');
-  },
   methods: {
     submitRecipe() {
       this.closeModal();
@@ -77,7 +73,7 @@ export default {
               label-name="Name" />
             <div :class="$style.prepContainer">
               <div>
-                <label>
+                <label :class="$style.submitLabel">
                   Type 
                 </label>
                 <select
@@ -92,7 +88,7 @@ export default {
                 </select>
               </div>
               <div>
-                <label>
+                <label :class="$style.submitLabel">
                   Method 
                 </label>
                 <select
@@ -122,22 +118,30 @@ export default {
         </div>
         <div :class="$style.bottomContainer">
           <div :class="$style.textareaContainer">
-            <label>Description</label>
+            <label :class="$style.submitLabel">
+              Description
+            </label>
             <textarea
               v-model="recipeModel.description" />
           </div>
           <div :class="$style.textareaContainer">
-            <label>Equipment - Description|Item</label>
+            <label :class="$style.submitLabel">
+              Equipment - Description|Item
+            </label>
             <textarea
               v-model="recipeModel.equipment" />
           </div>
           <div :class="$style.textareaContainer">
-            <label>Ingredients - Amount|Unit|Ingredient|Preparation</label>
+            <label :class="$style.submitLabel">
+              Ingredients - Amount|Unit|Ingredient|Preparation
+            </label>
             <textarea
               v-model="recipeModel.ingredients" />
           </div>
           <div :class="$style.textareaContainer">
-            <label>Directions</label>
+            <label :class="$style.submitLabel">
+              Directions
+            </label>
             <textarea
               v-model="recipeModel.directions" />
           </div>         
@@ -240,7 +244,7 @@ select {
   grid-row-gap: 10px;
 }
 
-label {
+.submitLabel {
   float: left;
 }
 
