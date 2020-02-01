@@ -2,15 +2,25 @@
 export default {
   name: 'FilterSelect',
   props: {
+    filterName: {
+      type: String,
+      required: true
+    },
     filters: {
       type: Array,
       default: () => {} 
     },
-    filterName :{
-      type: String,
-      required: true
+  },
+  data() {
+    return {
+      selectedFilters: []
     }
-  }
+  },
+  watch: {
+    selectedFilters(val) {
+      this.$emit('selectedFilters', val);
+    }
+  }  
 }
 </script>
 
@@ -24,9 +34,10 @@ export default {
         v-for="(filter, index) in filters" 
         :key="index">
         <input 
-          :id="filter.name"
-          type="checkbox"
-          :class="$style.filters">
+          :id="filter.id"
+          v-model="selectedFilters"
+          :value="filter"
+          type="checkbox">
         <span>
           {{ filter.name }}
         </span>

@@ -6,6 +6,12 @@ export default {
   components: {
     RecipeCard
   },
+  props: {
+    filters: {
+      type: Array,
+      required: true
+    }
+  },
   computed: {
     recipes() {
       return this.$store.getters.getAllRecipes;
@@ -24,6 +30,7 @@ export default {
 
 <template>
   <div :class="$style.container">
+    {{ filters }}
     <RecipeCard
       v-for="(recipe, index) in recipes"
       :key="index"
