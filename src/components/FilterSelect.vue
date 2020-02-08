@@ -11,16 +11,11 @@ export default {
       default: () => {} 
     },
   },
-  data() {
-    return {
-      selectedFilters: []
+  methods: {
+    filterClicked(filter) {
+      this.$store.dispatch('addFilter', { filterType: this.filterName.toLowerCase(), filter: filter });
     }
-  },
-  watch: {
-    selectedFilters(val) {
-      this.$emit('selectedFilters', val);
-    }
-  }  
+  }
 }
 </script>
 
@@ -35,9 +30,9 @@ export default {
         :key="index">
         <input 
           :id="filter.id"
-          v-model="selectedFilters"
           :value="filter"
-          type="checkbox">
+          type="checkbox"
+          @change="filterClicked(filter)">
         <span>
           {{ filter.name }}
         </span>

@@ -32,9 +32,9 @@ export default {
     },
     methodIcon() {
       let icon;
-      if (this.recipe.type === "1") {
+      if (this.recipe.method === "1") {
         icon = 'pan';
-      } else if (this.recipe.type === "3") {
+      } else if (this.recipe.method === "3") {
         icon = 'pot';
       } else {
         icon = 'oven';

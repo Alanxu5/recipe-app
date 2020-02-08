@@ -10,8 +10,7 @@ export default {
   },
   data() {
     return {
-      profile: this.$auth.profile,
-      filters: []
+      profile: this.$auth.profile
     };
   },
   mounted() {
@@ -22,10 +21,6 @@ export default {
     handleLoginEvent(data) {
       this.profile = data.profile;
     },
-    logFilters(data) {
-      console.log(data)
-      this.filters = data;
-    }
   }  
 }
 </script>
@@ -33,10 +28,8 @@ export default {
 <template>
   <div :class="$style.home">
     <div />
-    <FilterPanel 
-      @filters="logFilters" />
-    <RecipeList 
-      :filters="filters" />  
+    <FilterPanel />
+    <RecipeList />  
     <div />
   </div>
 </template>

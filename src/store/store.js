@@ -9,7 +9,11 @@ export default new Vuex.Store({
     current_recipe: {},
     recipes: [],
     types: [],
-    methods: []
+    methods: [],
+    filters: {
+      type: [],
+      method: []
+    }
   },
   mutations: {
     SET_RECIPE: (state, { recipe }) => {
@@ -23,6 +27,12 @@ export default new Vuex.Store({
     },   
     SET_RECIPE_METHODS: (state, { methods }) => {
       state.methods = methods;
+    },
+    ADD_FILTER: (state, { filterType, filter }) => {
+      state.filters[filterType].push(filter);
+    },
+    REMOVE_FILTER: (state, { filterType, index }) => {
+      state.filters[filterType].splice(index, 1);
     }
   },
   actions: {
@@ -157,11 +167,19 @@ export default new Vuex.Store({
       } catch (err) {
         console.log(err);
       }
+    },
+    addFilter: function ({ commit, state }, { filterType, filter }) {
+      const index = state.filters[filterType].findIndex(x => x.id === filter.id);  
+      if (index === -1) {
+        commit('ADD_FILTER', { filterType, filter });
+      } else {
+        commit('REMOVE_FILTER', { filterType, index });
+      }
     }
   },
   getters: {
     getAllRecipes: state => {
-      return state.recipes
+      return state.recipes;
     },
     getRecipe: state => (id) => {
       return state.recipes.find(recipe => recipe.id === id);
@@ -171,6 +189,9 @@ export default new Vuex.Store({
     },
     getRecipeMethods: state => {
       return state.methods;
+    },
+    getFilters: state => {
+      return state.filters;
     }
   }
 })

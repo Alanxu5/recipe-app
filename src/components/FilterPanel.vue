@@ -13,12 +13,7 @@ export default {
     recipeMethods() {
       return this.$store.getters.getRecipeMethods;
     }
-  },
-  methods: {
-    emitFilters(e) {
-      this.$emit('filters', e);
-    }
-  } 
+  }
 }
 </script>
 
@@ -26,12 +21,10 @@ export default {
   <div>
     <FilterSelect 
       :filter-name="'Type'"
-      :filters="recipeTypes" 
-      @selectedFilters="emitFilters" />
+      :filters="recipeTypes" />
     <FilterSelect 
       :filter-name="'Method'"
-      :filters="recipeMethods"
-      @selectedFilters="emitFilters" />
+      :filters="recipeMethods" />
   </div> 
 </template>
 

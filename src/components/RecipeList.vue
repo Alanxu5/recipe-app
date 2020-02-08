@@ -6,15 +6,19 @@ export default {
   components: {
     RecipeCard
   },
-  props: {
-    filters: {
-      type: Array,
-      required: true
-    }
-  },
   computed: {
     recipes() {
-      return this.$store.getters.getAllRecipes;
+      if (this.filters["method"].length === 0 && this.filters["type"].length === 0) {
+        return this.$store.getters.getAllRecipes;
+      } else {
+        return this.$store.getters.getAllRecipes.filter(recipe => {
+          return this.filters["method"].length > 0 ? this.filters["method"].some(x => x.id.toString() === recipe.method) : true &&
+            this.filters["type"].length > 0 ? this.filters["type"].some(y => y.id.toString() === recipe.type) : true;
+        });
+      }
+    },
+    filters() {
+      return this.$store.getters.getFilters;
     }
   },  
   created() {
@@ -30,7 +34,6 @@ export default {
 
 <template>
   <div :class="$style.container">
-    {{ filters }}
     <RecipeCard
       v-for="(recipe, index) in recipes"
       :key="index"
