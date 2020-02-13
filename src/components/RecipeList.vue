@@ -67,7 +67,6 @@ export default {
   .container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    align-items: center;
-    justify-items: center;
+    gap: 10px;
   }
 </style>

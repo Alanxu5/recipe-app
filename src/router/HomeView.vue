@@ -27,17 +27,15 @@ export default {
 
 <template>
   <div :class="$style.home">
-    <div />
     <FilterPanel />
     <RecipeList />  
-    <div />
   </div>
 </template>
 
 <style lang="scss" module>
   .home {
     display: grid;
-    grid-template-columns: 1fr 225px auto 1fr;
-    margin: 3rem auto 3rem auto;
+    grid-template-columns: 225px auto;
+    margin-top: 3rem;
   }
 </style>

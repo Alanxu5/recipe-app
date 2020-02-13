@@ -41,26 +41,27 @@ export default {
   </div>
 </template>
 
-<style module>
+<style lang="scss" module>
 @import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
-
-#app {
-  font-family: 'Roboto Condensed', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
 
 html, body {
   font-family: 'Lato', sans-serif;
+  width:100vw;
+  overflow-x:hidden;
+}
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.router {
+  display: flex;
+  justify-content: center;
 }
 
 a:-webkit-any-link {
   color: black;
   text-decoration-line: none;
-}
-
-.router {
-  margin: 0 auto
 }
 </style>

@@ -64,9 +64,6 @@ export default {
         {{ recipe.name }}
       </div>
       <div :class="$style.info">
-        <!-- <div>
-          {{ recipe.prepTime + recipe.cookTime }} min 
-        </div> -->
         <div>
           <img 
             :class="$style.icon"
@@ -77,22 +74,17 @@ export default {
             :class="$style.typeIcon"
             :src="require(`@/assets/icons/${typeIcon}.png`)">
         </div>
-        <!-- <div>
-          Aprons
-        </div> -->
       </div>
     </div>
   </div>
 </template>
 
-<style module>
+<style lang="scss" module>
   .container {
     display: grid;
     height: 350px; 
     width: 250px;
     grid-template-rows: 70% 30%;
-    margin-left: 8px;
-    margin-right: 8px;
   }
 
   .image {
@@ -118,7 +110,7 @@ export default {
 
   .info {
     display: grid;
-    grid-template-columns: 50px 50px 50px;
+    grid-template-columns: 50px 50px;
   }
 
   .name {

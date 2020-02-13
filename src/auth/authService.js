@@ -14,9 +14,9 @@ const localStorageKey = 'loggedIn';
 const loginEvent = 'loginEvent';
 
 class AuthService extends EventEmitter {
-  idToken = null;
-  profile = null;
-  tokenExpiry = null;
+  // idToken = null;
+  // profile = null;
+  // tokenExpiry = null;
 
   // Starts the user login flow
   login(customState) {
