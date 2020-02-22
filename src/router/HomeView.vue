@@ -17,11 +17,6 @@ export default {
     this.$store.dispatch('getRecipeTypes');
     this.$store.dispatch('getMethodTypes');
   },
-  methods: {
-    handleLoginEvent(data) {
-      this.profile = data.profile;
-    },
-  }  
 }
 </script>
 

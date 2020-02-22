@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.6.4",
     "auth0-js": "^9.12.2",
     "axios": "^0.19.2",
     "file-loader": "^3.0.1",
@@ -19,7 +20,8 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.1",
     "@vue/cli-plugin-eslint": "^3.12.1",
-    "@vue/cli-service": "^3.12.1",
+    "@vue/cli-plugin-unit-jest": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
     "@vue/eslint-config-airbnb": "^4.0.1",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",

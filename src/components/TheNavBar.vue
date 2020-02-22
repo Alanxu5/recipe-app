@@ -1,25 +1,18 @@
 <script>
 export default {
   name: 'TheNavBar',
-  data() {
-    return {
-      isAuthenticated: false
-    }
-  },
   methods: {
     toggleModal() {
       this.$emit('toggleModal');
     },
     login() {
-      this.$auth.login();
+      this.$auth.loginWithRedirect();
     },
     logout() {
-      this.$auth.logOut();
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
     },
-    handleLoginEvent(data) {
-      this.isAuthenticated = data.loggedIn;
-      this.profile = data.profile;
-    }    
   }
 }
 </script>
@@ -32,21 +25,28 @@ export default {
       </RouterLink>
     </div>
     <div 
-      :class="$style.link"
+      :class="$style.navItem"
       @click="toggleModal">
       Submit
     </div>
-    <div
-      v-if="isAuthenticated"
-      :class="$style.link"
-      @click="logout">
-      Logout
-    </div>
-    <div 
-      v-else
-      :class="$style.link"
-      @click="login">
-      Login
+    <div v-if="!$auth.loading">
+      <div
+        v-if="$auth.isAuthenticated"
+        :class="$style.navItem"
+        @click="logout">
+        Logout
+      </div>
+      <div 
+        v-else
+        :class="$style.navItem"
+        @click="login">
+        Login
+      </div>
+      <div
+        v-if="$auth.isAuthenticated"
+        :class="$style.navItem">
+        {{ $auth.user.email }}
+      </div>
     </div>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
 <style lang="scss" module>
 .header {
   display: grid;
-  grid-template-columns: 100px 100px 100px; 
+  grid-template-columns: 100px 100px 100px 100px; 
   height: 3rem;
 }
 
@@ -62,13 +62,13 @@ export default {
   background-color: orange;
 }
 
-.link {
-  display: grid;
-  justify-items: center;
+.navItem {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.link:hover {
+.navItem:hover {
   cursor: pointer;
   background-color: gray;
 }

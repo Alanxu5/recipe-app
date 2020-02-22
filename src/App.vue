@@ -13,13 +13,6 @@ export default {
       showModal: false
     };
   },
-  async created() {
-    try {
-      await this.$auth.renewTokens();
-    } catch (e) {
-      console.log(e);
-    }
-  },  
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
