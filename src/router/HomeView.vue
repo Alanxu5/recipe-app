@@ -8,11 +8,6 @@ export default {
     FilterPanel,
     RecipeList
   },
-  data() {
-    return {
-      profile: this.$auth.profile
-    };
-  },
   mounted() {
     this.$store.dispatch('getRecipeTypes');
     this.$store.dispatch('getMethodTypes');
