@@ -10,9 +10,9 @@ export default {
   computed: {
     imgFileName() {
       let img;
-      if (this.recipe.type === "1") {
+      if (this.recipe.type === "Protein") {
         img = 'IMG_2825';
-      } else if (this.recipe.type === "3") {
+      } else if (this.recipe.type === "Vegetable") {
         img = 'IMG_2838';
       } else {
         img = 'IMG_9939';
@@ -21,9 +21,9 @@ export default {
     },
     typeIcon() {
       let icon;
-      if (this.recipe.type === "1") {
+      if (this.recipe.type === "Protein") {
         icon = 'meat';
-      } else if (this.recipe.type === "3") {
+      } else if (this.recipe.type === "Vegetable") {
         icon = 'broccoli';
       } else {
         icon = 'potato';
@@ -32,9 +32,9 @@ export default {
     },
     methodIcon() {
       let icon;
-      if (this.recipe.method === "1") {
+      if (this.recipe.method === "Pan") {
         icon = 'pan';
-      } else if (this.recipe.method === "3") {
+      } else if (this.recipe.method === "Instant Pot") {
         icon = 'pot';
       } else {
         icon = 'oven';
