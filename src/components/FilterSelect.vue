@@ -11,6 +11,16 @@ export default {
       default: () => {} 
     },
   },
+  computed: {
+    checkedFilters() {
+      const queryFilters = this.$route.query[this.filterName.toLowerCase()];
+      const filters = queryFilters !== null && queryFilters !== undefined ? queryFilters.split(',') : this.filters;
+      this.filters.map(filter => {
+        filter.checked = filters.includes(filter.name);
+      })
+      return this.filters;
+    }
+  },
   methods: {
     filterClicked(filter) {
       this.$store.dispatch('addFilter', { filterType: this.filterName.toLowerCase(), filter: filter });
@@ -26,13 +36,12 @@ export default {
     </div> 
     <div :class="$style.filterGroup">
       <label 
-        v-for="(filter, index) in filters" 
+        v-for="(filter, index) in checkedFilters" 
         :key="index">
         <input 
-          :id="filter.id"
-          :value="filter"
           type="checkbox"
-          @change="filterClicked(filter)">
+          :checked="filter.checked"
+          @change="filterClicked(filter.name)">
         <span>
           {{ filter.name }}
         </span>

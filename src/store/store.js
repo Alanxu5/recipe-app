@@ -33,6 +33,9 @@ export default new Vuex.Store({
     },
     REMOVE_FILTER: (state, { filterType, index }) => {
       state.filters[filterType].splice(index, 1);
+    },
+    ADD_FILTERS: (state, { filterType, filters }) => {
+      state.filters[filterType] = filters;
     }
   },
   actions: {
@@ -139,7 +142,6 @@ export default new Vuex.Store({
 
         if (response.ok) {
           commit('SET_RECIPE_TYPES', { types: responseJson }); 
-          console.log(responseJson);
         } else {
           console.log(response)
         }   
@@ -160,7 +162,6 @@ export default new Vuex.Store({
 
         if (response.ok) {
           commit('SET_RECIPE_METHODS', { methods: responseJson }); 
-          console.log(responseJson);
         } else {
           console.log(response)
         }   
@@ -169,12 +170,20 @@ export default new Vuex.Store({
       }
     },
     addFilter: function ({ commit, state }, { filterType, filter }) {
-      const index = state.filters[filterType].findIndex(x => x.id === filter.id);  
+      const index = state.filters[filterType].findIndex(x => x === filter);  
       if (index === -1) {
         commit('ADD_FILTER', { filterType, filter });
       } else {
         commit('REMOVE_FILTER', { filterType, index });
       }
+      const filters = {
+        'type' : state.filters.type.toString() === '' ? null : state.filters.type.toString(),
+        'method' : state.filters.method.toString() === '' ? null : state.filters.method.toString()
+      }
+      router.push({ query: { ...filters }});
+    },
+    addQueryFilter: function ({ commit }, { filterType, filters }) {
+      commit('ADD_FILTERS', { filterType, filters });
     }
   },
   getters: {
