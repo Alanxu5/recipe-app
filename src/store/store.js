@@ -176,11 +176,17 @@ export default new Vuex.Store({
       } else {
         commit('REMOVE_FILTER', { filterType, index });
       }
+
       const filters = {
         'type' : state.filters.type.toString() === '' ? null : state.filters.type.toString(),
         'method' : state.filters.method.toString() === '' ? null : state.filters.method.toString()
       }
-      router.push({ query: { ...filters }});
+      
+      if (filters.type === null && filters.method === null ) {
+        router.push({ name: 'home'});
+      } else {
+        router.push({ query: { ...filters }});
+      }
     },
     addQueryFilter: function ({ commit }, { filterType, filters }) {
       commit('ADD_FILTERS', { filterType, filters });
