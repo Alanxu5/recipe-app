@@ -16,8 +16,10 @@ export default {
   mounted() {
     if (this.$route.query['type'] !== null && this.$route.query['type'] !== undefined) {
       this.$store.dispatch('addQueryFilter', { filterType: 'type', filters: this.$route.query['type'].split(',') });
-    } else if (this.$route.query['method'] !== null && this.$route.query['method'] !== undefined) {
-      this.$store.dispatch('addQueryFilter', { filterType: 'type', filters: this.$route.query['method'].split(',') });
+    }
+    
+    if (this.$route.query['method'] !== null && this.$route.query['method'] !== undefined) {
+      this.$store.dispatch('addQueryFilter', { filterType: 'method', filters: this.$route.query['method'].split(',') });
     }
   },
   methods: {
