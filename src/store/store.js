@@ -13,7 +13,8 @@ export default new Vuex.Store({
     filters: {
       type: [],
       method: []
-    }
+    },
+    plate: {}
   },
   mutations: {
     SET_RECIPE: (state, { recipe }) => {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     ADD_FILTERS: (state, { filterType, filters }) => {
       state.filters[filterType] = filters;
+    },
+    ADD_RECIPE_TO_PLATE: (state, plate) => {
+      state.plate = plate;
     }
   },
   actions: {
@@ -101,7 +105,7 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('SET_ALL_RECIPES', {recipes: responseJson})
+          commit('SET_ALL_RECIPES', { recipes: responseJson });
         } else {
           console.log(response)
         }        
@@ -190,6 +194,29 @@ export default new Vuex.Store({
     },
     addQueryFilter: function ({ commit }, { filterType, filters }) {
       commit('ADD_FILTERS', { filterType, filters });
+    },
+    addRecipeToPlate: function ({ commit, state }, { recipeId, recipeType }) {
+      let plate = {
+        [recipeType]: recipeId
+      };
+      const plateLocalStorage = localStorage.getItem('plate');
+
+      // [TODO] - if user is not logged in
+      if (plateLocalStorage) {
+        plate = { ...JSON.parse(plateLocalStorage), ...plate };
+        localStorage.setItem('plate', JSON.stringify(plate));
+      } else {
+        localStorage.setItem('plate', JSON.stringify(plate));
+      }
+      // else hit API
+
+      commit('ADD_RECIPE_TO_PLATE', plate);
+    },
+    getLocalStorageData: function ({ commit }) {
+      const plateLocalStorage = localStorage.getItem('plate');
+      if (plateLocalStorage) {
+        commit('ADD_RECIPE_TO_PLATE', JSON.parse(plateLocalStorage));
+      }
     }
   },
   getters: {
@@ -207,6 +234,9 @@ export default new Vuex.Store({
     },
     getFilters: state => {
       return state.filters;
+    },
+    getPlate: state => {
+      return state.plate;
     }
   }
 })

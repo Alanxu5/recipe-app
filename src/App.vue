@@ -21,6 +21,8 @@ export default {
     if (this.$route.query['method'] !== null && this.$route.query['method'] !== undefined) {
       this.$store.dispatch('addQueryFilter', { filterType: 'method', filters: this.$route.query['method'].split(',') });
     }
+
+    this.$store.dispatch('getLocalStorageData');
   },
   methods: {
     toggleModal() {
@@ -48,8 +50,8 @@ export default {
 
 html, body {
   font-family: 'Lato', sans-serif;
-  width:100vw;
-  overflow-x:hidden;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 #app {

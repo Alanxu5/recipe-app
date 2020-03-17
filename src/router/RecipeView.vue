@@ -23,6 +23,11 @@ export default {
   created() {
     this.$store.dispatch('getRecipe', this.$route.query.id);
   },
+  methods: {
+    addRecipe() {
+      this.$store.dispatch('addRecipeToPlate', { recipeId: this.recipe.id, recipeType: this.recipe.type });
+    }
+  }
 }
 </script>
 
@@ -54,6 +59,11 @@ export default {
             </div>
             <div :class="$style.subtext">
               Type: {{ recipe.type }}
+            </div>
+            <div :class="$style.description">
+              <button @click="addRecipe">
+                Add to Plate
+              </button>
             </div>
             <div :class="$style.description">
               Description: {{ recipe.description }}
@@ -97,10 +107,11 @@ export default {
 
 <style lang="scss" module>
   .recipeContainer {
-    margin: 1.5rem 4rem 3rem 7rem;
+    margin: 1.5rem 0 3rem 0;
     display: grid;
     grid-template-columns: 75% 1fr;
     grid-column-gap: 3rem;
+    width: 70%;
   }
 
   .container {

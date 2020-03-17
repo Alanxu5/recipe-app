@@ -1,6 +1,11 @@
 <script>
 export default {
   name: 'TheNavBar',
+  computed: {
+    plateRecipes() {
+      return this.$store.getters.getPlate;
+    }
+  },
   methods: {
     toggleModal() {
       this.$emit('toggleModal');
@@ -29,16 +34,16 @@ export default {
       @click="toggleModal">
       Submit
     </div>
-    <div v-if="!$auth.loading">
+    <div 
+      v-if="!$auth.loading"
+      :class="$style.navItem">
       <div
         v-if="$auth.isAuthenticated"
-        :class="$style.navItem"
         @click="logout">
         Logout
       </div>
       <div 
         v-else
-        :class="$style.navItem"
         @click="login">
         Login
       </div>
@@ -48,13 +53,18 @@ export default {
         {{ $auth.user.email }}
       </div>
     </div>
+    <div />
+    <div 
+      :class="$style.cart">
+      {{ plateRecipes }}
+    </div>
   </div>
 </template>
 
 <style lang="scss" module>
 .header {
   display: grid;
-  grid-template-columns: 100px 100px 100px 100px; 
+  grid-template-columns: 100px 100px 100px 1fr 100px; 
   height: 3rem;
 }
 
@@ -69,6 +79,18 @@ export default {
 }
 
 .navItem:hover {
+  cursor: pointer;
+  background-color: gray;
+}
+
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 34px;
+}
+
+.cart:hover {
   cursor: pointer;
   background-color: gray;
 }
