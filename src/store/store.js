@@ -38,7 +38,7 @@ export default new Vuex.Store({
     ADD_FILTERS: (state, { filterType, filters }) => {
       state.filters[filterType] = filters;
     },
-    ADD_RECIPE_TO_PLATE: (state, plate) => {
+    SET_RECIPE_PLATE: (state, plate) => {
       state.plate = plate;
     }
   },
@@ -210,12 +210,23 @@ export default new Vuex.Store({
       }
       // else hit API
 
-      commit('ADD_RECIPE_TO_PLATE', plate);
+      commit('SET_RECIPE_PLATE', plate);
+    },
+    removeRecipeFromPlate: function ({ commit, state }, { recipeId, recipeType }) {
+      const plateLocalStorage = JSON.parse(localStorage.getItem('plate'));
+
+      if (plateLocalStorage) {
+        if (plateLocalStorage[recipeType] === recipeId) {
+          delete plateLocalStorage[recipeType];
+          localStorage.setItem('plate', JSON.stringify(plateLocalStorage));
+          commit('SET_RECIPE_PLATE', plateLocalStorage);
+        }
+      }
     },
     getLocalStorageData: function ({ commit }) {
       const plateLocalStorage = localStorage.getItem('plate');
       if (plateLocalStorage) {
-        commit('ADD_RECIPE_TO_PLATE', JSON.parse(plateLocalStorage));
+        commit('SET_RECIPE_PLATE', JSON.parse(plateLocalStorage));
       }
     }
   },

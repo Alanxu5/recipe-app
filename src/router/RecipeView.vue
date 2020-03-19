@@ -18,6 +18,9 @@ export default {
         img = 'IMG_9939';
       }
       return img;
+    },
+    addedToPlate() {
+      return this.$store.getters.getPlate[this.recipe.type] === this.recipe.id;
     }
   },  
   created() {
@@ -26,6 +29,9 @@ export default {
   methods: {
     addRecipe() {
       this.$store.dispatch('addRecipeToPlate', { recipeId: this.recipe.id, recipeType: this.recipe.type });
+    },
+    removeRecipe() {
+      this.$store.dispatch('removeRecipeFromPlate', { recipeId: this.recipe.id, recipeType: this.recipe.type });
     }
   }
 }
@@ -61,7 +67,14 @@ export default {
               Type: {{ recipe.type }}
             </div>
             <div :class="$style.description">
-              <button @click="addRecipe">
+              <button 
+                v-if="addedToPlate"
+                @click="removeRecipe">
+                Remove From Plate
+              </button>
+              <button 
+                v-else 
+                @click="addRecipe">
                 Add to Plate
               </button>
             </div>
