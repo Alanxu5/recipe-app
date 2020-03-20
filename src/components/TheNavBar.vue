@@ -26,7 +26,7 @@ export default {
   <div :class="$style.header">
     <div :class="$style.icon">
       <RouterLink to="/">
-        Icon
+        !
       </RouterLink>
     </div>
     <div 
@@ -55,7 +55,7 @@ export default {
     </div>
     <div />
     <div 
-      :class="$style.cart">
+      :class="$style.navItem">
       {{ plateRecipes }}
     </div>
   </div>
@@ -64,12 +64,15 @@ export default {
 <style lang="scss" module>
 .header {
   display: grid;
-  grid-template-columns: 100px 100px 100px 1fr 100px; 
+  grid-template-columns: 3rem 100px 100px 1fr 100px; 
   height: 3rem;
 }
 
 .icon {
-  background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d3d3d3;
 }
 
 .navItem {
@@ -80,18 +83,12 @@ export default {
 
 .navItem:hover {
   cursor: pointer;
-  background-color: gray;
+  border-bottom: 1px solid #808080;
 }
 
 .cart {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 34px;
-}
-
-.cart:hover {
-  cursor: pointer;
-  background-color: gray;
 }
 </style>

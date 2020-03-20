@@ -51,6 +51,7 @@ export default {
 
 html, body {
   font-family: 'Lato', sans-serif;
+  font-size: .95rem;
   width: 100vw;
   overflow-x: hidden;
   margin-top: 0px;
@@ -66,12 +67,14 @@ html, body {
   position: fixed;
   z-index: 1;
   width: 100%;
-  background-color: white;
+  background-color: #ffffff;
+  border-bottom: .5px solid #d3d3d3d3;
 }
 
 .router {
   display: flex;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 a:-webkit-any-link {
