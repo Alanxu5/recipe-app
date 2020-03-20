@@ -192,8 +192,8 @@ export default new Vuex.Store({
         router.push({ query: { ...filters }});
       }
     },
-    addQueryFilter: function ({ commit }, { filterType, filters }) {
-      commit('ADD_FILTERS', { filterType, filters });
+    addQueryFilters ({ commit }, { filterType, filters }) {
+      commit('ADD_FILTERS', { filterType, filters } );
     },
     addRecipeToPlate: function ({ commit, state }, { recipeId, recipeType }) {
       let plate = {
@@ -223,7 +223,7 @@ export default new Vuex.Store({
         }
       }
     },
-    getLocalStorageData: function ({ commit }) {
+    getLocalStorageData ({ commit }) {
       const plateLocalStorage = localStorage.getItem('plate');
       if (plateLocalStorage) {
         commit('SET_RECIPE_PLATE', JSON.parse(plateLocalStorage));

@@ -13,13 +13,13 @@ export default {
       showModal: false
     };
   },
-  mounted() {
+  created() {
     if (this.$route.query['type'] !== null && this.$route.query['type'] !== undefined) {
-      this.$store.dispatch('addQueryFilter', { filterType: 'type', filters: this.$route.query['type'].split(',') });
+      this.$store.dispatch('addQueryFilters', { filterType: 'type', filters: this.$route.query['type'].split(',') });
     }
-    
+
     if (this.$route.query['method'] !== null && this.$route.query['method'] !== undefined) {
-      this.$store.dispatch('addQueryFilter', { filterType: 'method', filters: this.$route.query['method'].split(',') });
+      this.$store.dispatch('addQueryFilters', { filterType: 'method', filters: this.$route.query['method'].split(',') });
     }
 
     this.$store.dispatch('getLocalStorageData');
@@ -34,7 +34,8 @@ export default {
 
 <template>
   <div id="app">
-    <TheNavBar 
+    <TheNavBar
+      :class="$style.navBar"
       @toggleModal="toggleModal" />
     <div :class="$style.router">
       <RouterView />
@@ -52,11 +53,20 @@ html, body {
   font-family: 'Lato', sans-serif;
   width: 100vw;
   overflow-x: hidden;
+  margin-top: 0px;
+  margin-left: 0px;
 }
 
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.navBar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: white;
 }
 
 .router {
