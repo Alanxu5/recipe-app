@@ -93,7 +93,7 @@ export default new Vuex.Store({
         console.log(err);
       }
     }, 
-    getRecipes: async function ({ commit }) {
+    getRecipes: async function ({ commit, state }) {
       try {
         const response = await fetch('http://localhost:8000/recipes', {
           method: "GET",
@@ -105,7 +105,14 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('SET_ALL_RECIPES', { recipes: responseJson });
+          const filteredRecipes = responseJson
+            .filter(recipe => {
+              return state.filters.method.length > 0 ? state.filters.method.find(x => x === recipe.method) : true;
+            })
+            .filter(recipe => {
+              return state.filters.type.length > 0 ? state.filters.type.find(y => y === recipe.type) : true;
+            })
+          commit('SET_ALL_RECIPES', { recipes: filteredRecipes });
         } else {
           console.log(response)
         }        
@@ -173,7 +180,7 @@ export default new Vuex.Store({
         console.log(err);
       }
     },
-    addFilter: function ({ commit, state }, { filterType, filter }) {
+    addFilter: function ({ commit, state, dispatch }, { filterType, filter }) {
       const index = state.filters[filterType].findIndex(x => x === filter);  
       if (index === -1) {
         commit('ADD_FILTER', { filterType, filter });
@@ -191,6 +198,7 @@ export default new Vuex.Store({
       } else {
         router.push({ query: { ...filters }});
       }
+      dispatch('getRecipes');
     },
     addQueryFilters ({ commit }, { filterType, filters }) {
       commit('ADD_FILTERS', { filterType, filters } );
