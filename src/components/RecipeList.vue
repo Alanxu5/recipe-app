@@ -8,7 +8,7 @@ export default {
   },
   computed: {
     recipes() {
-      return this.$store.getters.getAllRecipes
+      return this.$store.getters.getRecipes
         .filter(recipe => {
           return this.filters["method"].length > 0 ? this.filters["method"].find(x => x === recipe.method) : true;
         })
@@ -21,7 +21,7 @@ export default {
     }
   },  
   created() {
-    this.$store.dispatch('getAllRecipes')
+    this.$store.dispatch('getRecipes');
   },
   methods: {
     viewRecipe(id) {

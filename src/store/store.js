@@ -93,7 +93,7 @@ export default new Vuex.Store({
         console.log(err);
       }
     }, 
-    getAllRecipes: async function ({ commit }) {
+    getRecipes: async function ({ commit }) {
       try {
         const response = await fetch('http://localhost:8000/recipes', {
           method: "GET",
@@ -195,7 +195,7 @@ export default new Vuex.Store({
     addQueryFilters ({ commit }, { filterType, filters }) {
       commit('ADD_FILTERS', { filterType, filters } );
     },
-    addRecipeToPlate: function ({ commit, state }, { recipeId, recipeType }) {
+    addRecipeToPlate: function ({ commit }, { recipeId, recipeType }) {
       let plate = {
         [recipeType]: recipeId
       };
@@ -212,7 +212,7 @@ export default new Vuex.Store({
 
       commit('SET_RECIPE_PLATE', plate);
     },
-    removeRecipeFromPlate: function ({ commit, state }, { recipeId, recipeType }) {
+    removeRecipeFromPlate: function ({ commit }, { recipeId, recipeType }) {
       const plateLocalStorage = JSON.parse(localStorage.getItem('plate'));
 
       if (plateLocalStorage) {
@@ -231,7 +231,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getAllRecipes: state => {
+    getRecipes: state => {
       return state.recipes;
     },
     getRecipe: state => (id) => {
