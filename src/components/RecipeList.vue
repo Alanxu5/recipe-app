@@ -10,10 +10,10 @@ export default {
     recipes() {
       return this.$store.getters.getRecipes
         .filter(recipe => {
-          return this.filters["method"].length > 0 ? this.filters["method"].find(x => x === recipe.method) : true;
+          return this.filters.method.length > 0 ? this.filters.method.find(x => x === recipe.method) : true;
         })
         .filter(recipe => {
-          return this.filters["type"].length > 0 ? this.filters["type"].find(y => y === recipe.type) : true;
+          return this.filters.type.length > 0 ? this.filters.type.find(y => y === recipe.type) : true;
         })
     },
     filters() {
