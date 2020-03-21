@@ -26,6 +26,5 @@ export default {
   .home {
     display: grid;
     grid-template-columns: 225px auto;
-    margin-top: 3rem;
   }
 </style>

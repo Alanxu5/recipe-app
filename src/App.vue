@@ -74,11 +74,10 @@ html, body {
 .router {
   display: flex;
   justify-content: center;
-  padding-top: 1rem;
+  padding-top: 5rem;
 }
 
 a:-webkit-any-link {
-  color: black;
   text-decoration-line: none;
 }
 </style>

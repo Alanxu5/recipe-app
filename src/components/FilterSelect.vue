@@ -13,10 +13,9 @@ export default {
   },
   computed: {
     checkedFilters() {
-      const queryFilters = this.$route.query[this.filterName.toLowerCase()];
-      const filters = queryFilters !== null && queryFilters !== undefined ? queryFilters.split(',') : this.filters;
+      const queryFilters = this.$store.getters.getFilters[this.filterName.toLowerCase()];
       this.filters.map(filter => {
-        filter.checked = filters.includes(filter.name);
+        filter.checked = queryFilters.includes(filter.name);
       })
       return this.filters;
     }
@@ -31,7 +30,7 @@ export default {
 
 <template>
   <div :class="$style.filterSection">
-    <div :class="$style.filterHeader">
+    <div>
       {{ filterName }} 
     </div> 
     <div :class="$style.filterGroup">
@@ -55,18 +54,11 @@ export default {
     margin-bottom: 2rem;
   }
 
-  .filterGroup label {
-    display: block;
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-
-  .filterGroup input {
-    vertical-align: middle;
-  }
-
-  .filterGroup label span {
-    vertical-align: middle;
-  }
-
+  .filterGroup {
+    label {
+      display: block;
+      padding-right: .5rem;
+      white-space: nowrap;
+    }
+   }
 </style>
