@@ -48,8 +48,7 @@ export default {
         Login
       </div>
       <div
-        v-if="$auth.isAuthenticated"
-        :class="$style.navItem">
+        v-if="$auth.isAuthenticated">
         {{ $auth.user.email }}
       </div>
     </div>
@@ -70,25 +69,22 @@ export default {
 
 .icon {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #d3d3d3;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .navItem {
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.navItem:hover {
-  cursor: pointer;
-  border-bottom: 1px solid #808080;
-}
-
-.cart {
-  display: flex;
   justify-content: center;
-  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid #808080;
+  }
 }
 </style>
