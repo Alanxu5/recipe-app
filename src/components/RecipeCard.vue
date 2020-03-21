@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     recipeClicked() {
-      this.$emit('recipeClicked', this.recipe.id);
+      this.$router.push({ name: 'recipe', query: { id: this.recipe.id } });
     }
   }
 }
@@ -58,8 +58,7 @@ export default {
         :class="$style.image"
         :src="require(`@/assets/images/${imgFileName}.jpg`)">
     </div>
-    <div
-      :class="$style.information">
+    <div>
       <div :class="$style.name">
         {{ recipe.name }}
       </div>
@@ -71,7 +70,7 @@ export default {
         </div>
         <div>
           <img 
-            :class="$style.typeIcon"
+            :class="$style.icon"
             :src="require(`@/assets/icons/${typeIcon}.png`)">
         </div>
       </div>
@@ -85,6 +84,7 @@ export default {
     height: 350px; 
     width: 250px;
     grid-template-rows: 70% 30%;
+    grid-gap: .5rem;
   }
 
   .image {
@@ -97,15 +97,6 @@ export default {
   .icon {
     width: 35px;
     height: 35px;
-  }
-
-  .typeIcon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .information {
-    margin-top: .5rem;
   }
 
   .info {

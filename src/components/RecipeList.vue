@@ -14,11 +14,6 @@ export default {
   created() {
     this.$store.dispatch('getRecipes');
   },
-  methods: {
-    viewRecipe(id) {
-      this.$router.push({ name: 'recipe', query: { id: id } });
-    }
-  }
 }
 </script>
 
@@ -27,8 +22,7 @@ export default {
     <RecipeCard
       v-for="(recipe, index) in recipes"
       :key="index"
-      :recipe="recipe" 
-      @recipeClicked="viewRecipe" />
+      :recipe="recipe" /> 
   </div>
 </template>
 
