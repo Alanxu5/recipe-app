@@ -8,7 +8,7 @@ import HomeView from '@/router/HomeView'
 // tells vue to use vue router
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -23,3 +23,12 @@ export default new Router({
     }
   ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name === 'home' && from.name === 'home' && Object.keys(from.query).length > 0) {
+//     console.log(from);
+//   }
+//   next();
+// });
+
+export default router

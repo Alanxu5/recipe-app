@@ -25,7 +25,7 @@ export default {
 <template>
   <div :class="$style.header">
     <div :class="$style.icon">
-      <RouterLink to="/">
+      <RouterLink :to="{ name: 'home' }">
         !
       </RouterLink>
     </div>
