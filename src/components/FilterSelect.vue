@@ -14,10 +14,12 @@ export default {
   computed: {
     checkedFilters() {
       const queryFilters = this.$store.getters.getFilters[this.filterName.toLowerCase()];
-      this.filters.map(filter => {
+      const checkedFilters = this.filters.map(filter => {
         filter.checked = queryFilters.includes(filter.name);
+        return filter;
       })
-      return this.filters;
+
+      return checkedFilters;
     }
   },
   methods: {

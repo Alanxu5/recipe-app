@@ -1,5 +1,5 @@
 <script>
-import RecipeCard from '@/components/RecipeCard';
+import RecipeCard from '@/components/RecipeCard'
 
 export default {
   name: 'RecipeList',

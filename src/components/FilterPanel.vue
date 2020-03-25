@@ -1,5 +1,5 @@
 <script>
-import FilterSelect from '@/components/FilterSelect';
+import FilterSelect from '@/components/FilterSelect'
 
 export default {
   name: 'FilterPanel',
@@ -29,7 +29,4 @@ export default {
 </template>
 
 <style lang="scss" module>
-  .filterHeader {
-    font-size: 1.15rem;
-  }
 </style>

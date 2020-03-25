@@ -1,6 +1,6 @@
 <script>
-import FilterPanel from '@/components/FilterPanel';
-import RecipeList from '@/components/RecipeList';
+import FilterPanel from '@/components/FilterPanel'
+import RecipeList from '@/components/RecipeList'
 
 export default {
   name: 'HomeView',
