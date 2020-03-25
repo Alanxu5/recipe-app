@@ -5,7 +5,6 @@ import RecipeView from '@/router/RecipeView'
 import HomeView from '@/router/HomeView'
 // import { authGuard } from '../auth/authGuard'
 
-// tells vue to use vue router
 Vue.use(Router)
 
 const router = new Router({

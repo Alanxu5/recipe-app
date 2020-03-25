@@ -3,10 +3,11 @@ export default {
   name: 'RecipeView',
   computed: {
     recipe() {
-      return this.$store.state.current_recipe;
+      return this.$store.getters.getCurrentRecipe;
     },
+    // [TODO] - find a better way to ensure getCurrentRecipe is set after 'getRecipe' dispatch()
     dirArr() {
-      return Object.values(this.$store.state.current_recipe).length === 0 ? [] : Object.values(this.$store.state.current_recipe.directions) 
+      return Object.keys(this.recipe).length > 0 ? Object.keys(this.recipe.directions).map(e => this.recipe.directions[e]) : [];
     },
     imgFileName() {
       let img = '';
@@ -42,7 +43,7 @@ export default {
     <div>
       <div :class="$style.container">
         <div :class="$style.summary">
-          <div :class="$style.imageContainer">
+          <div>
             <img 
               :class="$style.image"
               :src="require(`@/assets/images/${imgFileName}.jpg`)">
@@ -159,10 +160,6 @@ export default {
     text-align: center;
     margin-bottom: 1rem;
     margin-top: -7px;
-  }
-
-  .imageContainer {
-
   }
 
   .image {

@@ -49,7 +49,7 @@ export default new Vuex.Store({
         const directionObj = { ...directionArr };
         recipe.directions = directionObj;
 
-        // TODO[AX]: get ingredient list data in a better way 
+        // [TODO] - get ingredient list data in a better way 
         const ingredientArr = recipe.ingredients.split(/\n/);
         const ingredientObjArr = ingredientArr.map(ingredient => {
           const value = ingredient.split('|');
@@ -239,6 +239,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    getCurrentRecipe: state => {
+      return state.current_recipe;
+    },
     getRecipes: state => {
       return state.recipes;
     },
