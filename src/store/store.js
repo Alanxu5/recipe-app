@@ -17,7 +17,7 @@ export default new Vuex.Store({
     plate: {}
   },
   mutations: {
-    SET_RECIPE: (state, { recipe }) => {
+    SET_CURRENT_RECIPE: (state, { recipe }) => {
       state.current_recipe = recipe;
     },
     SET_ALL_RECIPES: (state, { recipes }) => {
@@ -35,7 +35,7 @@ export default new Vuex.Store({
     REMOVE_FILTER: (state, { filterType, index }) => {
       state.filters[filterType].splice(index, 1);
     },
-    ADD_FILTERS: (state, { filterType, filters }) => {
+    SET_FILTERS: (state, { filterType, filters }) => {
       state.filters[filterType] = filters;
     },
     SET_RECIPE_PLATE: (state, plate) => {
@@ -84,13 +84,13 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('SET_RECIPE', { recipe: recipe });
+          commit('SET_CURRENT_RECIPE', { recipe: recipe });
           router.push({ name: 'recipe', query: { id: responseJson } });
         } else {
-          console.log(response)
+          console.err(response);
         }
       } catch(err) {
-        console.log(err);
+        console.err(err);
       }
     }, 
     getRecipes: async function ({ commit, state }) {
@@ -114,10 +114,10 @@ export default new Vuex.Store({
             })
           commit('SET_ALL_RECIPES', { recipes: filteredRecipes });
         } else {
-          console.log(response)
+          console.err(response)
         }        
       } catch(err) {
-        console.log(err);
+        console.err(err);
       }
     },
     getRecipe: async function ({ commit }, id) {
@@ -132,12 +132,12 @@ export default new Vuex.Store({
         const responseJson = await response.json();
 
         if (response.ok) {
-          commit('SET_RECIPE', { recipe: responseJson });
+          commit('SET_CURRENT_RECIPE', { recipe: responseJson });
         } else {
-          console.log(response)
+          console.err(response)
         }        
       } catch(err) {
-        console.log(err);
+        console.err(err);
       }
     },
     getRecipeTypes: async function ({ commit }) {
@@ -154,10 +154,10 @@ export default new Vuex.Store({
         if (response.ok) {
           commit('SET_RECIPE_TYPES', { types: responseJson }); 
         } else {
-          console.log(response)
+          console.err(response)
         }   
       } catch (err) {
-        console.log(err);
+        console.err(err);
       }
     },
     getMethodTypes: async function ({ commit }) {
@@ -174,10 +174,10 @@ export default new Vuex.Store({
         if (response.ok) {
           commit('SET_RECIPE_METHODS', { methods: responseJson }); 
         } else {
-          console.log(response)
+          console.err(response);
         }   
       } catch (err) {
-        console.log(err);
+        console.err(err);
       }
     },
     addFilter: function ({ commit, state, dispatch }, { filterType, filter }) {
@@ -201,7 +201,7 @@ export default new Vuex.Store({
       dispatch('getRecipes');
     },
     addQueryFilters ({ commit }, { filterType, filters }) {
-      commit('ADD_FILTERS', { filterType, filters } );
+      commit('SET_FILTERS', { filterType, filters } );
     },
     addRecipeToPlate: function ({ commit }, { recipeId, recipeType }) {
       let plate = {
