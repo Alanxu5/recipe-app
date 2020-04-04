@@ -49,9 +49,12 @@ export default {
 <style lang="scss" module>
 @import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
 
-html, body {
+html {
   font-family: 'Lato', sans-serif;
   font-size: .95rem;
+}
+
+body {
   width: 100vw;
   overflow-x: hidden;
   margin-top: 0px;

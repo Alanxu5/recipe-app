@@ -19,17 +19,6 @@ export default {
       }
       return img;
     },
-    typeIcon() {
-      let icon;
-      if (this.recipe.type === "Protein") {
-        icon = 'meat';
-      } else if (this.recipe.type === "Vegetable") {
-        icon = 'broccoli';
-      } else {
-        icon = 'potato';
-      }
-      return icon;
-    },
     methodIcon() {
       let icon;
       if (this.recipe.method === "Pan") {
@@ -40,6 +29,9 @@ export default {
         icon = 'oven';
       }
       return icon; 
+    },
+    isPlated() {
+      return this.$store.getters.getPlate[this.recipe.type] === this.recipe.id;
     }
   },
   methods: {
@@ -69,9 +61,12 @@ export default {
             :src="require(`@/assets/icons/${methodIcon}.png`)">
         </div>
         <div>
-          <img 
-            :class="$style.icon"
-            :src="require(`@/assets/icons/${typeIcon}.png`)">
+          {{ recipe.cookTime + recipe.prepTime }} mins
+        </div>
+        <div 
+          v-if="isPlated"
+          :class="$style.plated">
+          plated
         </div>
       </div>
     </div>
@@ -101,10 +96,15 @@ export default {
 
   .info {
     display: grid;
-    grid-template-columns: 50px 50px;
+    grid-template-columns: 50px 50px 50px;
+    grid-column-gap: 5px;
   }
 
   .name {
     font-size: 1.15rem;
+  }
+
+  .plated {
+    color: #8FADFF;
   }
 </style>
