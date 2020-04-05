@@ -53,11 +53,9 @@ export default {
         <div :class="$style.name">
           {{ recipe.name }}
         </div>
-        <div>
-          <img 
-            :class="$style.icon"
-            :src="require(`@/assets/icons/${methodIcon}.png`)">
-        </div>
+        <img 
+          :class="$style.icon"
+          :src="require(`@/assets/icons/${methodIcon}.png`)">
       </div>
       <div :class="$style.summary">
         <div :class="$style.time">

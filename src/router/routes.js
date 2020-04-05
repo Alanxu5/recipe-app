@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import RecipeView from '@/router/RecipeView'
 import HomeView from '@/router/HomeView'
+import PlateView from '@/router/PlateView'
 // import { authGuard } from '../auth/authGuard'
 
 Vue.use(Router)
@@ -19,6 +20,11 @@ const router = new Router({
       path: '/recipe',
       name: 'recipe',
       component: RecipeView
+    },
+    {
+      path: '/plate',
+      name: 'plate',
+      component: PlateView
     }
   ]
 })

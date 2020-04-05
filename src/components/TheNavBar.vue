@@ -18,6 +18,9 @@ export default {
         returnTo: window.location.origin
       });
     },
+    viewPlate() {
+      this.$router.push({ name: 'plate' })
+    }
   }
 }
 </script>
@@ -53,10 +56,10 @@ export default {
       </div>
     </div>
     <div />
-    <div 
-      :class="$style.navItem">
-      {{ plateRecipes }}
-    </div>
+    <img 
+      :class="$style.plate"
+      :src="require(`@/assets/icons/plate.png`)"
+      @click="viewPlate">
   </div>
 </template>
 
@@ -85,6 +88,18 @@ export default {
   &:hover {
     cursor: pointer;
     border-bottom: 1px solid #808080;
+  }
+}
+
+.plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+
+  &:hover {
+    cursor: pointer;
   }
 }
 </style>
