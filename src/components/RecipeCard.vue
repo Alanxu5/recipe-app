@@ -45,22 +45,22 @@ export default {
   <div 
     :class="$style.container"
     @click="recipeClicked">
+    <img 
+      :class="$style.image"
+      :src="require(`@/assets/images/${imgFileName}.jpg`)">
     <div>
-      <img 
-        :class="$style.image"
-        :src="require(`@/assets/images/${imgFileName}.jpg`)">
-    </div>
-    <div>
-      <div :class="$style.name">
-        {{ recipe.name }}
-      </div>
       <div :class="$style.info">
+        <div :class="$style.name">
+          {{ recipe.name }}
+        </div>
         <div>
           <img 
             :class="$style.icon"
             :src="require(`@/assets/icons/${methodIcon}.png`)">
         </div>
-        <div>
+      </div>
+      <div :class="$style.summary">
+        <div :class="$style.time">
           {{ recipe.cookTime + recipe.prepTime }} mins
         </div>
         <div 
@@ -95,16 +95,31 @@ export default {
   }
 
   .info {
-    display: grid;
-    grid-template-columns: 50px 50px 50px;
-    grid-column-gap: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .name {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
+  }
+
+  .summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .time {
+    color: rgb(95, 95, 95); 
+    margin-right: 1rem;
   }
 
   .plated {
-    color: #8FADFF;
+    font-weight: 600;
+    color: rgb(53, 117, 56);
+    margin-right: 1rem;
   }
 </style>
