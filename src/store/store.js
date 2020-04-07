@@ -14,7 +14,8 @@ export default new Vuex.Store({
       type: [],
       method: []
     },
-    plate: {}
+    plate: {},
+    platedRecipes: {}
   },
   mutations: {
     SET_CURRENT_RECIPE: (state, { recipe }) => {
@@ -40,6 +41,9 @@ export default new Vuex.Store({
     },
     SET_RECIPE_PLATE: (state, plate) => {
       state.plate = plate;
+    },
+    SET_PLATED_RECIPES: (state, platedRecipes) => {
+      state.platedRecipes = platedRecipes;
     }
   },
   actions: {
@@ -236,6 +240,29 @@ export default new Vuex.Store({
       if (plateLocalStorage) {
         commit('SET_RECIPE_PLATE', JSON.parse(plateLocalStorage));
       }
+    },
+    async getPlatedRecipes ({ commit, state }) {
+      try {
+        const recipeIDArr = Object.values(state.plate);
+        const platedRecipes = [];
+        
+        const requests = recipeIDArr.map(id => {
+          return fetch(`http://localhost:8000/recipes/${id}`);
+        });
+        
+        Promise.all(requests)
+          .then( async (responses) => {
+            for (var response of responses) {
+              const responseJson = await response.json(); 
+              platedRecipes.push(responseJson);
+            }
+
+            commit('SET_PLATED_RECIPES', platedRecipes); 
+          });
+        
+      } catch(err) {
+        console.err(err);
+      }
     }
   },
   getters: {
@@ -259,6 +286,9 @@ export default new Vuex.Store({
     },
     getPlate: state => {
       return state.plate;
+    },
+    getPlatedRecipes: state => {
+      return state.platedRecipes;
     }
   }
 })
