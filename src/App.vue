@@ -71,7 +71,7 @@ body {
   z-index: 1;
   width: 100%;
   background-color: #ffffff;
-  border-bottom: .5px solid #d3d3d3d3;
+  border-bottom: .5px solid rgb(220, 220, 220);
 }
 
 .router {

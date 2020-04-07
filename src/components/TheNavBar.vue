@@ -67,7 +67,7 @@ export default {
 .header {
   display: grid;
   grid-template-columns: 3rem 100px 100px 1fr 100px; 
-  height: 3rem;
+  height: 3.5rem;
 }
 
 .icon {
