@@ -24,39 +24,55 @@ export default {
 </script>
 
 <template>
-  <div :class="$style.container">
-    <div>
-      <img 
-        :class="$style.image"
-        :src="require(`@/assets/images/${imgFileName}.jpg`)">
+  <div>
+    <div :class="$style.type">
+      {{ platedRecipe.type }}
     </div>
-    <div :class="$style.plateInfo">
-      <div :class="$style.info">
-        <div :class="$style.name">
-          {{ platedRecipe.name }}
+    <div :class="$style.container">
+      <div>
+        <img 
+          :class="$style.image"
+          :src="require(`@/assets/images/${imgFileName}.jpg`)">
+      </div>
+      <div :class="$style.plateInfo">
+        <div :class="$style.info">
+          <div :class="$style.name">
+            {{ platedRecipe.name }}
+          </div>
+          <div :class="$style.recipeInfo">
+            Method: {{ platedRecipe.method }}
+          </div>
+          <div :class="$style.recipeInfo">
+            Servings: {{ platedRecipe.servings }}
+          </div>
+          <div :class="$style.recipeInfo">
+            Prep Time: {{ platedRecipe.prepTime }} mins
+          </div>
+          <div :class="$style.recipeInfo">
+            Cook Time: {{ platedRecipe.cookTime }} mins
+          </div>
         </div>
         <div :class="$style.recipeInfo">
-          {{ platedRecipe.type }}
-        </div>
-        <div :class="$style.recipeInfo">
-          {{ platedRecipe.method }}
+          {{ platedRecipe.description }}
         </div>
       </div>
-      <div :class="$style.recipeInfo">
-        {{ platedRecipe.description }}
+      <div>
+        Total Time: {{ platedRecipe.prepTime + platedRecipe.cookTime }} mins
       </div>
-    </div>
-    <div>
-      {{ platedRecipe.prepTime + platedRecipe.cookTime }}
     </div>
   </div>
 </template>
 
 <style lang="scss" module>
+  .type {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
   .container {
     height: 200px;
     display: grid;
-    grid-template-columns: 30% 1fr 10%;
+    grid-template-columns: 30% 1fr auto;
     padding: 1rem;
     border-bottom: .5px solid rgb(220, 220, 220);
   }
@@ -74,11 +90,11 @@ export default {
   }
 
   .info {
-    line-height: 1.25;
+    line-height: 1.45;
   }
 
   .name {
-    font-size: 1.25rem;
+    font-size: 1.20rem;
   } 
 
   .recipeInfo {
