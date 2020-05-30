@@ -20,8 +20,9 @@ export default {
       }
       return img;
     },
-    addedToPlate() {
-      return this.$store.getters.getPlate[this.recipe.type] === this.recipe.id;
+    isPlated() {
+      const platedRecipes = this.$store.getters.getPlatedRecipes; 
+      return platedRecipes[this.recipe.type] && platedRecipes[this.recipe.type].id === this.recipe.id;
     }
   },  
   created() {
@@ -29,10 +30,10 @@ export default {
   },
   methods: {
     addRecipe() {
-      this.$store.dispatch('addRecipeToPlate', { recipeId: this.recipe.id, recipeType: this.recipe.type });
+      this.$store.dispatch('addRecipeToPlate', { recipe: this.recipe });
     },
     removeRecipe() {
-      this.$store.dispatch('removeRecipeFromPlate', { recipeId: this.recipe.id, recipeType: this.recipe.type });
+      this.$store.dispatch('removeRecipeFromPlate', { recipeId: this.recipe.id });
     }
   }
 }
@@ -69,7 +70,7 @@ export default {
             </div>
             <div :class="$style.description">
               <button 
-                v-if="addedToPlate"
+                v-if="isPlated"
                 @click="removeRecipe">
                 Remove From Plate
               </button>

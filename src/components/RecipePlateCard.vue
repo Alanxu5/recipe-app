@@ -19,12 +19,17 @@ export default {
       }
       return img;
     },
+  },
+  methods: {
+    removeRecipe() {
+      this.$store.dispatch('removeRecipeFromPlate', { recipeId: this.platedRecipe.id });
+    }
   }
 }
 </script>
 
 <template>
-  <div>
+  <div :class="$style.card">
     <div :class="$style.type">
       {{ platedRecipe.type }}
     </div>
@@ -52,8 +57,12 @@ export default {
             Cook Time: {{ platedRecipe.cookTime }} mins
           </div>
         </div>
-        <div :class="$style.recipeInfo">
-          {{ platedRecipe.description }}
+        <div :class="$style.plateActions">
+          <div
+            :class="$style.remove"
+            @click="removeRecipe">
+            Remove
+          </div>
         </div>
       </div>
       <div>
@@ -64,6 +73,10 @@ export default {
 </template>
 
 <style lang="scss" module>
+  .card {
+    padding-top: .75rem;
+  }
+
   .type {
     font-size: 1.25rem;
     font-weight: 500;
@@ -97,7 +110,17 @@ export default {
     font-size: 1.20rem;
   } 
 
-  .recipeInfo {
-    color: rgb(95, 95, 95); 
+  .plateActions {
+    display: flex;
+    padding-bottom: .5rem;
+  }
+
+  .remove {
+    color: rgb(124, 124, 124);
+    border-bottom: 1px solid rgb(124, 124, 124);
+    padding-bottom: 2px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 </style>

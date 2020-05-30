@@ -1,11 +1,6 @@
 <script>
 export default {
   name: 'TheNavBar',
-  computed: {
-    plateRecipes() {
-      return this.$store.getters.getPlate;
-    }
-  },
   methods: {
     toggleModal() {
       this.$emit('toggleModal');
@@ -29,7 +24,7 @@ export default {
   <div :class="$style.header">
     <div :class="$style.icon">
       <RouterLink :to="{ name: 'home' }">
-        !
+        X
       </RouterLink>
     </div>
     <div 

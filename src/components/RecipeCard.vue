@@ -31,7 +31,8 @@ export default {
       return icon; 
     },
     isPlated() {
-      return this.$store.getters.getPlate[this.recipe.type] === this.recipe.id;
+      const platedRecipes = this.$store.getters.getPlatedRecipes; 
+      return platedRecipes[this.recipe.type] && platedRecipes[this.recipe.type].id === this.recipe.id;
     }
   },
   methods: {
@@ -65,6 +66,9 @@ export default {
           v-if="isPlated"
           :class="$style.plated">
           plated
+        </div>
+        <div>
+          {{ recipe.ingredients.length }}
         </div>
       </div>
     </div>
