@@ -4,7 +4,8 @@ import Router from 'vue-router'
 import RecipeView from '@/router/RecipeView'
 import HomeView from '@/router/HomeView'
 import PlateView from '@/router/PlateView'
-// import { authGuard } from '../auth/authGuard'
+import ProfileView from '@/router/ProfileView'
+import { authGuard } from '../auth/authGuard'
 
 Vue.use(Router)
 
@@ -25,6 +26,12 @@ const router = new Router({
       path: '/plate',
       name: 'plate',
       component: PlateView
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: ProfileView,
+      beforeEnter: authGuard
     }
   ]
 })

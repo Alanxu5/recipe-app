@@ -1,6 +1,11 @@
 <script>
+import AccountDropdown from '@/components/AccountDropdown';
+
 export default {
   name: 'TheNavBar',
+  components: {
+    AccountDropdown
+  },
   methods: {
     toggleModal() {
       this.$emit('toggleModal');
@@ -32,25 +37,20 @@ export default {
       @click="toggleModal">
       Submit
     </div>
+    <div />
     <div 
       v-if="!$auth.loading"
       :class="$style.navItem">
       <div
-        v-if="$auth.isAuthenticated"
-        @click="logout">
-        Logout
+        v-if="$auth.isAuthenticated">
+        <AccountDropdown />
       </div>
       <div 
         v-else
         @click="login">
         Login
       </div>
-      <div
-        v-if="$auth.isAuthenticated">
-        {{ $auth.user.email }}
-      </div>
     </div>
-    <div />
     <img 
       :class="$style.plate"
       :src="require(`@/assets/icons/plate.png`)"
@@ -61,7 +61,7 @@ export default {
 <style lang="scss" module>
 .header {
   display: grid;
-  grid-template-columns: 3rem 100px 100px 1fr 100px; 
+  grid-template-columns: 3rem 100px 1fr 100px 100px; 
   height: 3.5rem;
 }
 
@@ -82,7 +82,6 @@ export default {
 
   &:hover {
     cursor: pointer;
-    border-bottom: 1px solid #808080;
   }
 }
 
