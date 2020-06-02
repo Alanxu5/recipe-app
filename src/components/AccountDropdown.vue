@@ -4,7 +4,12 @@ export default {
   methods: {
     getProfile() {
       this.$router.push({ name: 'profile' });
-    }
+    },
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    },
   }
 }
 </script>
@@ -16,7 +21,7 @@ export default {
     </div>
     <div :class="$style.dropdownContent">
       <a @click="getProfile">Profile</a>
-      <a>Logout</a>
+      <a @click="logout">Logout</a>
     </div>
   </div>
 </template>
