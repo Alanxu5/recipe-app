@@ -94,18 +94,7 @@ export const useAuth0 = ({
       },
       logout(o) {
         return this.auth0Client.logout(o);
-      },
-      renewSession() {
-        this.auth0Client.checkSession({}, (err, authResult) => {
-          if (authResult && authResult.accessToken && authResult.idToken) {
-            this.setSession(authResult)
-          } else if (err) {
-            this.logout()
-            console.log(err)
-            alert(`Could not get a new token (${err.error}: ${err.error_description}).`)
-          }
-        })
-      }      
+      }
     }
   });
 
