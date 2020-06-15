@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '@/router/routes.js'
+import { RepositoryFactory } from '@/repository/repositoryFactory';
+const RecipesRepository = RepositoryFactory.get('recipes');
 
 Vue.use(Vuex)
 
@@ -73,7 +75,7 @@ export default new Vuex.Store({
 
         recipe.equipment = equipmentObjArr;
         
-        const response = await fetch('http://localhost:8000/recipes', {
+        const response = await fetch('http://localhost:8000/api/recipes', {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json' 
@@ -95,34 +97,22 @@ export default new Vuex.Store({
     }, 
     getRecipes: async function ({ commit, state }) {
       try {
-        const response = await fetch('http://localhost:8000/recipes', {
-          method: "GET",
-          headers: { 
-            'Content-Type': 'application/json' 
-          },
-        });
-
-        const responseJson = await response.json();
-
-        if (response.ok) {
-          const filteredRecipes = responseJson
-            .filter(recipe => {
-              return state.filters.method.length > 0 ? state.filters.method.find(x => x === recipe.method) : true;
-            })
-            .filter(recipe => {
-              return state.filters.type.length > 0 ? state.filters.type.find(y => y === recipe.type) : true;
-            })
-          commit('SET_ALL_RECIPES', { recipes: filteredRecipes });
-        } else {
-          console.error(response)
-        }        
+        const response = await RecipesRepository.getRecipes();
+        const filteredRecipes = response.data
+          .filter(recipe => {
+            return state.filters.method.length > 0 ? state.filters.method.find(x => x === recipe.method) : true;
+          })
+          .filter(recipe => {
+            return state.filters.type.length > 0 ? state.filters.type.find(y => y === recipe.type) : true;
+          })
+        commit('SET_ALL_RECIPES', { recipes: filteredRecipes });
       } catch(err) {
         console.error(err);
       }
     },
     getRecipe: async function ({ commit }, id) {
       try {
-        const response = await fetch(`http://localhost:8000/recipes/${id}`, {
+        const response = await fetch(`http://localhost:8000/api/recipes/${id}`, {
           method: "GET",
           headers: { 
             'Content-Type': 'application/json' 
@@ -142,7 +132,7 @@ export default new Vuex.Store({
     },
     getRecipeTypes: async function ({ commit }) {
       try {
-        const response = await fetch(`http://localhost:8000/recipes/types`, {
+        const response = await fetch(`http://localhost:8000/api/recipes/types`, {
           method: "GET",
           headers: { 
             'Content-Type': 'application/json' 
@@ -162,7 +152,7 @@ export default new Vuex.Store({
     },
     getMethodTypes: async function ({ commit }) {
       try {
-        const response = await fetch(`http://localhost:8000/recipes/methods`, {
+        const response = await fetch(`http://localhost:8000/api/recipes/methods`, {
           method: "GET",
           headers: { 
             'Content-Type': 'application/json' 
@@ -238,7 +228,7 @@ export default new Vuex.Store({
         const platedRecipes = {};
         
         const requests = recipes.map(recipe => {
-          return fetch(`http://localhost:8000/recipes/${recipe.id}`);
+          return fetch(`http://localhost:8000/api/recipes/${recipe.id}`);
         });
         
         Promise.all(requests)
