@@ -13,17 +13,7 @@ export default {
     },
   },  
   async created() {
-    // const instance = getInstance();
-
-    // instance.$watch("loading", async loading => {
-    //   if (!loading && instance.isAuthenticated) {
-    //     const token = await instance.getTokenSilently();
-    //     console.log(token);
-    //     this.$store.dispatch('getRecipes', token);
-    //   }
-    // });
-   
-   this.$store.dispatch('getRecipes');
+    this.$store.dispatch('getRecipes');
   }
 }
 </script>
