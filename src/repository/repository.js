@@ -1,20 +1,22 @@
 import axios from 'axios';
-// import myApp from '@/main';
+import { getInstance } from '@/auth/index.js';
 
 const baseDomain = 'http://localhost:8000';
 const baseURL = `${baseDomain}/api`;
 
-export const httpClient = axios.create({
+const apiClient = axios.create({
   baseURL: baseURL,
   headers: {
-    "Context-Type": "application/json"
+    "Context-Type": "application/json",
+    Accept: 'application/json'
   }
 });
 
-// httpClient.interceptors.request.use(async (config) => {
-//     const token = await myApp.$auth.getTokenSilently(); 
-//     config.headers['Authorization'] = `Bearer ${token}`;
-//     return config
-//   }, (error) => {
-//     return Promise.reject(error);
-//  })
+apiClient.interceptors.request.use(async request => {
+    const authService = getInstance();
+    const token =  authService ? await authService.getTokenSilently() : undefined;
+    request.headers.authorization = `bearer ${token}`;
+    return request
+});
+
+export default apiClient;

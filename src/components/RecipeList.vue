@@ -1,6 +1,5 @@
 <script>
 import RecipeCard from '@/components/RecipeCard'
-// import { getInstance } from '@/auth';
 
 export default {
   name: 'RecipeList',
@@ -13,6 +12,7 @@ export default {
     },
   },  
   async created() {
+    await this.$store.dispatch('retrieveTokenFromAuth');
     this.$store.dispatch('getRecipes');
   }
 }

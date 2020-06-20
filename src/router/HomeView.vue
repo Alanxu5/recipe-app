@@ -8,7 +8,7 @@ export default {
     FilterPanel,
     RecipeList
   },
-  mounted() {
+  created() {
     this.$store.dispatch('getRecipeTypes');
     this.$store.dispatch('getMethodTypes');
   },
