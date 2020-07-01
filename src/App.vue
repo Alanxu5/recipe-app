@@ -13,7 +13,8 @@ export default {
       showModal: false
     };
   },
-  created() {
+  async created() {
+    await this.$store.dispatch('retrieveTokenFromAuth');
     if (this.$route.query['type'] !== null && this.$route.query['type'] !== undefined) {
       this.$store.dispatch('addQueryFilters', { filterType: 'type', filters: this.$route.query['type'].split(',') });
     }

@@ -1,14 +1,14 @@
-import { httpClient } from './repository';
+import apiClient from '@/repository/repository';
 
 const resource = '/recipes';
 export default {
   getRecipes() {
-    return httpClient.get(`${resource}`);
+    return apiClient.get(`${resource}`);
   },
   getRecipe(id) {
-    return httpClient.get(`${resource}/${id}`);
+    return apiClient.get(`${resource}/${id}`);
   },  
   createRecipe(payload) {
-    return httpClient.post(`${resource}`, payload);
+    return apiClient.post(`${resource}`, payload);
   }
 }

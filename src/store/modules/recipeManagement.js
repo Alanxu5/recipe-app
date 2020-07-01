@@ -1,7 +1,6 @@
 import router from '@/router/routes.js'
-import apiClient from '@/repository/repository';
-// import { RepositoryFactory } from '@/repository/repositoryFactory';
-// const RecipesRepository = RepositoryFactory.get('recipes');
+import { RepositoryFactory } from '@/repository/repositoryFactory';
+const RecipesRepository = RepositoryFactory.get('recipes');
 
 export default {
   state: {
@@ -71,31 +70,16 @@ export default {
         })
 
         recipe.equipment = equipmentObjArr;
-        
-        const response = await fetch('http://localhost:8000/api/recipes', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json' 
-          },
-          body: JSON.stringify(recipe)
-        });
-
-        const responseJson = await response.json();
-
-        if (response.ok) {
-          commit('SET_CURRENT_RECIPE', { recipe: recipe });
-          router.push({ name: 'recipe', query: { id: responseJson } });
-        } else {
-          console.error(response);
-        }
+        const reponse = await RecipesRepository.createRecipe(recipe); 
+        commit('SET_CURRENT_RECIPE', { recipe: reponse.data });
+        router.push({ name: 'recipe', query: { id: reponse.data } });
       } catch(err) {
         console.error(err);
       }
     }, 
-    getRecipes: async function ({ commit, state, rootGetters }) {
+    getRecipes: async function ({ commit, state }) {
       try {
-        console.log(rootGetters.getToken);
-        const response = await apiClient.get('/recipes');
+        const response = await RecipesRepository.getRecipes();
         const filteredRecipes = response.data
           .filter(recipe => {
             return state.filters.method.length > 0 ? state.filters.method.find(x => x === recipe.method) : true;
@@ -110,20 +94,8 @@ export default {
     },
     getRecipe: async function ({ commit }, id) {
       try {
-        const response = await fetch(`http://localhost:8000/api/recipes/${id}`, {
-          method: "GET",
-          headers: { 
-            'Content-Type': 'application/json' 
-          },
-        });
-
-        const responseJson = await response.json();
-
-        if (response.ok) {
-          commit('SET_CURRENT_RECIPE', { recipe: responseJson });
-        } else {
-          console.error(response)
-        }        
+        const response = await RecipesRepository.getRecipe(id);
+        commit('SET_CURRENT_RECIPE', { recipe: response.data });
       } catch(err) {
         console.error(err);
       }
