@@ -1,17 +1,9 @@
 <script>
-import AccountDropdown from '@/components/AccountDropdown';
-
 export default {
   name: 'TheNavBar',
-  components: {
-    AccountDropdown
-  },
   methods: {
     toggleModal() {
       this.$emit('toggleModal');
-    },
-    login() {
-      this.$auth.loginWithRedirect();
     },
     viewPlate() {
       this.$router.push({ name: 'plate' })
@@ -33,19 +25,6 @@ export default {
       Submit
     </div>
     <div />
-    <div 
-      v-if="!$auth.loading"
-      :class="$style.navItem">
-      <div
-        v-if="$auth.isAuthenticated">
-        <AccountDropdown />
-      </div>
-      <div 
-        v-else
-        @click="login">
-        Login
-      </div>
-    </div>
     <img 
       :class="$style.plate"
       :src="require(`@/assets/icons/plate.png`)"

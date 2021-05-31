@@ -12,7 +12,6 @@ export default {
     },
   },  
   async created() {
-    await this.$store.dispatch('retrieveTokenFromAuth');
     this.$store.dispatch('getRecipes');
   }
 }

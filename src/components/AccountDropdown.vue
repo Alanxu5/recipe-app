@@ -5,10 +5,10 @@ export default {
     getProfile() {
       this.$router.push({ name: 'profile' });
     },
-    logout() {
-      this.$auth.logout({
-        returnTo: window.location.origin
-      });
+    // logout() {
+    //   this.$auth.logout({
+    //     returnTo: window.location.origin
+    //   });
     },
   }
 }

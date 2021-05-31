@@ -5,14 +5,6 @@ export default {
     return {
       accessToken: {}
     };    
-  },
-  created() {
-    this.getAccessToken();
-  },
-  methods: {
-    async getAccessToken() {
-      this.accessToken = await this.$auth.getTokenSilently();
-    }
   }
 }
 </script>
@@ -24,9 +16,6 @@ export default {
         {{ JSON.stringify($auth.user, null, 2) }}
       </pre>
     </code>
-    <div>
-      {{ accessToken }}
-    </div>
   </div>
 </template>
 
