@@ -13,6 +13,10 @@ export default {
     recipeMethods() {
       return this.$store.getters.getRecipeMethods;
     }
+  },
+  created() {
+    this.$store.dispatch('getRecipeTypes');
+    this.$store.dispatch('getMethodTypes')
   }
 }
 </script>
@@ -27,6 +31,3 @@ export default {
       :filters="recipeMethods" />
   </div> 
 </template>
-
-<style lang="scss" module>
-</style>

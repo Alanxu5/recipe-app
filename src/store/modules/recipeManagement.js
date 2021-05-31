@@ -141,9 +141,9 @@ export default {
       }
     },
     addFilter: function ({ commit, state, dispatch }, { filterType, filter }) {
-      const index = state.filters[filterType].findIndex(x => x === filter);  
+      const index = state.filters[filterType].findIndex(x => x === filter.name);  
       if (index === -1) {
-        commit('ADD_FILTER', { filterType, filter });
+        commit('ADD_FILTER', { filterType, filter: filter.name });
       } else {
         commit('REMOVE_FILTER', { filterType, index });
       }

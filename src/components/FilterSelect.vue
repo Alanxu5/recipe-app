@@ -42,7 +42,7 @@ export default {
         <input 
           type="checkbox"
           :checked="filter.checked"
-          @change="filterClicked(filter.name)">
+          @change="filterClicked(filter)">
         <span>
           {{ filter.name }}
         </span>

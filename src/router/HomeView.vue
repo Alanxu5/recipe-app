@@ -7,11 +7,7 @@ export default {
   components: {
     FilterPanel,
     RecipeList
-  },
-  created() {
-    this.$store.dispatch('getRecipeTypes');
-    this.$store.dispatch('getMethodTypes');
-  },
+  }
 }
 </script>
 
