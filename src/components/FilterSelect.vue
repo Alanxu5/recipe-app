@@ -8,8 +8,8 @@ export default {
     },
     filters: {
       type: Array,
-      default: () => {} 
-    },
+      required: true
+    }
   },
   computed: {
     checkedFilters() {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     filterClicked(filter) {
-      this.$store.dispatch('addFilter', { filterType: this.filterName.toLowerCase(), filter: filter });
+      this.$store.dispatch('filterChanged', { filterType: this.filterName.toLowerCase(), filter });
     }
   }
 }

@@ -8,7 +8,7 @@ export default {
   },
   computed: {
     recipes() {
-      return this.$store.getters.getRecipes;
+      return this.$store.getters.getFilteredRecipes;
     },
   },  
   async created() {

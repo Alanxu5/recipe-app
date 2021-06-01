@@ -19,22 +19,17 @@ export default {
 
 <template>
   <div :class="$style.container">
-    <div>
-      <RecipePlateCard 
-        v-for="(platedRecipe, index) in platedRecipes"
-        :key="index"
-        :plated-recipe="platedRecipe" />
-    </div>
-    <div>
-      Summary
-    </div>
+    <RecipePlateCard 
+      v-for="(platedRecipe, index) in platedRecipes"
+      :key="index"
+      :plated-recipe="platedRecipe" />
   </div>
 </template>
 
 <style lang="scss" module>
   .container {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 70%;
     width: 100%;
   }
   

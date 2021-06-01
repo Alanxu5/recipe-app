@@ -6,6 +6,7 @@ export default {
   state: {
     current_recipe: {},
     recipes: [],
+    filteredRecipes: [],
     types: [],
     methods: [],
     filters: {
@@ -35,6 +36,9 @@ export default {
     },
     SET_FILTERS: (state, { filterType, filters }) => {
       state.filters[filterType] = filters;
+    },
+    SET_FILTERED_RECIPES: (state, { filteredRecipes }) => {
+      state.filteredRecipes = filteredRecipes;
     },
     SET_RECIPE_PLATE: (state, plate) => {
       state.plated_recipes = plate;
@@ -77,17 +81,11 @@ export default {
         console.error(err);
       }
     }, 
-    getRecipes: async function ({ commit, state }) {
+    getRecipes: async function ({ commit, dispatch }) {
       try {
         const response = await RecipesRepository.getRecipes();
-        const filteredRecipes = response.data
-          .filter(recipe => {
-            return state.filters.method.length > 0 ? state.filters.method.find(x => x === recipe.method) : true;
-          })
-          .filter(recipe => {
-            return state.filters.type.length > 0 ? state.filters.type.find(y => y === recipe.type) : true;
-          })
-        commit('SET_ALL_RECIPES', { recipes: filteredRecipes });
+        commit('SET_ALL_RECIPES', { recipes: response.data });
+        dispatch('getFilteredRecipes')
       } catch(err) {
         console.error(err);
       }
@@ -140,7 +138,7 @@ export default {
         console.error(err);
       }
     },
-    addFilter: function ({ commit, state, dispatch }, { filterType, filter }) {
+    filterChanged ({ commit, state, dispatch }, { filterType, filter }) {
       const index = state.filters[filterType].findIndex(x => x === filter.name);  
       if (index === -1) {
         commit('ADD_FILTER', { filterType, filter: filter.name });
@@ -148,17 +146,30 @@ export default {
         commit('REMOVE_FILTER', { filterType, index });
       }
 
-      const filters = {
-        'type' : state.filters.type.toString() === '' ? null : state.filters.type.toString(),
-        'method' : state.filters.method.toString() === '' ? null : state.filters.method.toString()
+      const typeFilters = state.filters.type.toString();
+      const methodFilters = state.filters.method.toString();
+      const filters = {};
+
+      if (typeFilters) {
+        filters['type'] = typeFilters;
       }
-      
-      if (filters.type === null && filters.method === null ) {
-        router.push({ name: 'home'});
-      } else {
-        router.push({ query: { ...filters }});
+
+      if (methodFilters) {
+        filters['method'] = methodFilters;
       }
-      dispatch('getRecipes');
+
+      router.push({ query: { ...filters }});
+      dispatch('getFilteredRecipes');
+    },
+    getFilteredRecipes({ commit, state }) {
+      const filteredRecipes = state.recipes
+      .filter(recipe => {
+        return state.filters.method.length > 0 ? state.filters.method.find(x => x === recipe.method) : true;
+      })
+      .filter(recipe => {
+        return state.filters.type.length > 0 ? state.filters.type.find(y => y === recipe.type) : true;
+      })
+      commit('SET_FILTERED_RECIPES', { filteredRecipes });       
     },
     addQueryFilters ({ commit }, { filterType, filters }) {
       commit('SET_FILTERS', { filterType, filters } );
@@ -169,12 +180,10 @@ export default {
         [recipe.type]: recipe
       };
 
-      // [TODO] - if user is not logged in
       if (plateLocalStorage) {
         plate = { ...JSON.parse(plateLocalStorage), ...plate };
       } 
       localStorage.setItem('plate', JSON.stringify(plate));
-      // else hit API
 
       commit('SET_RECIPE_PLATE', plate);
     },
@@ -237,6 +246,9 @@ export default {
     },
     getPlatedRecipes: state => {
       return state.plated_recipes;
+    },
+    getFilteredRecipes: state => {
+      return state.filteredRecipes;
     }
   }
 };

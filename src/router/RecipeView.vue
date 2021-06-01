@@ -16,7 +16,7 @@ export default {
       } else if (this.recipe.type === 'Vegetable') {
         img = 'IMG_2838';
       } else {
-        img = 'IMG_9939';
+        img = 'instantpot_rice';
       }
       return img;
     },
@@ -114,9 +114,6 @@ export default {
         </div>
       </div>
     </div>
-    <div :class="$style.otherRecipes">
-      OTHER RECIPES
-    </div>
   </div>
 </template>
 
@@ -185,9 +182,5 @@ export default {
 
   .directions {
 
-  }
-
-  .otherRecipes {
-    background-color: lightgray;
   }
 </style>

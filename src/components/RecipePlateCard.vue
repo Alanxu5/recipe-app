@@ -15,7 +15,7 @@ export default {
       } else if (this.platedRecipe.type === "Vegetable") {
         img = 'IMG_2838';
       } else {
-        img = 'IMG_9939';
+        img = 'instantpot_rice';
       }
       return img;
     },
