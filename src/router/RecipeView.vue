@@ -5,7 +5,6 @@ export default {
     recipe() {
       return this.$store.getters.getCurrentRecipe;
     },
-    // [TODO] - find a better way to ensure getCurrentRecipe is set after 'getRecipe' dispatch()
     dirArr() {
       return Object.keys(this.recipe).length > 0 ? Object.keys(this.recipe.directions).map(e => this.recipe.directions[e]) : [];
     },
@@ -40,7 +39,9 @@ export default {
 </script>
 
 <template>
-  <div :class="$style.recipeContainer">
+  <div 
+    v-if="recipe"
+    :class="$style.recipeContainer">
     <div>
       <div :class="$style.container">
         <div :class="$style.summary">
@@ -93,11 +94,8 @@ export default {
             <div 
               v-for="(ingredient, index) in recipe.ingredients"
               :key="index">
-              <div v-if="ingredient.preparation">
-                {{ index + 1 }}. {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.ingredient }}, {{ ingredient.preparation }}
-              </div>
-              <div v-else>
-                {{ index + 1 }}. {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.ingredient }} 
+              <div>
+                {{ index + 1 }}. {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.ingredient }} {{ ingredient.preparation }}
               </div>
             </div>
           </div>
@@ -172,15 +170,7 @@ export default {
     row-gap: 2rem;
   }
 
-  .ingredients {
-
-  }
-
   .sectionHeader {
     font-size: 1.5rem;
-  }
-
-  .directions {
-
   }
 </style>
