@@ -3,7 +3,9 @@ A web application using Vue.js and Go to enter and display recipes!
 
 ## Project setup
 ```
-npm install
+1. clone project
+2. make sure you have the correct node version
+3. npm install
 ```
 
 ### Compiles and hot-reloads for development
