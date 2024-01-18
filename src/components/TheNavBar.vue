@@ -1,6 +1,11 @@
 <script>
 export default {
   name: 'TheNavBar',
+  computed: {
+    enablePlate() {
+      return this.$store.getters.getFeatureFlags.enablePlate;
+    }
+  },
   methods: {
     toggleModal() {
       this.$emit('toggleModal');
@@ -26,6 +31,7 @@ export default {
     </div>
     <div />
     <img 
+      v-if="enablePlate"
       :class="$style.plate"
       :src="require(`@/assets/icons/plate.png`)"
       @click="viewPlate">

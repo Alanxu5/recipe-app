@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import RecipeView from '@/router/RecipeView'
 import HomeView from '@/router/HomeView'
-import PlateView from '@/router/PlateView'
+// import PlateView from '@/router/PlateView'
 import ProfileView from '@/router/ProfileView'
 
 Vue.use(Router)
@@ -21,11 +21,11 @@ const router = new Router({
       name: 'recipe',
       component: RecipeView
     },
-    {
-      path: '/plate',
-      name: 'plate',
-      component: PlateView
-    },
+    // {
+    //   path: '/plate',
+    //   name: 'plate',
+    //   component: PlateView,
+    // },
     {
       path: '/profile',
       name: 'profile',

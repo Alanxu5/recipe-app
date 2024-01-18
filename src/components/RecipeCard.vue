@@ -33,6 +33,9 @@ export default {
     isPlated() {
       const platedRecipes = this.$store.getters.getPlatedRecipes; 
       return platedRecipes[this.recipe.type] && platedRecipes[this.recipe.type].id === this.recipe.id;
+    },
+    enablePlate() {
+      return this.$store.getters.getFeatureFlags.enablePlate;
     }
   },
   methods: {
@@ -63,7 +66,7 @@ export default {
           {{ recipe.cookTime + recipe.prepTime }} mins
         </div>
         <div 
-          v-if="isPlated"
+          v-if="isPlated && enablePlate"
           :class="$style.plated">
           plated
         </div>

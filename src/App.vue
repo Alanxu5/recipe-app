@@ -14,6 +14,7 @@ export default {
     };
   },
   async created() {
+    // TODO - check this work
     if (this.$route.query['type'] !== null && this.$route.query['type'] !== undefined) {
       this.$store.dispatch('addQueryFilters', { filterType: 'type', filters: this.$route.query['type'].split(',') });
     }
@@ -22,6 +23,7 @@ export default {
       this.$store.dispatch('addQueryFilters', { filterType: 'method', filters: this.$route.query['method'].split(',') });
     }
 
+    this.$store.dispatch('getFeatureFlags')
     this.$store.dispatch('getLocalStorageData');
   },
   methods: {

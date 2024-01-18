@@ -22,10 +22,16 @@ export default {
     isPlated() {
       const platedRecipes = this.$store.getters.getPlatedRecipes; 
       return platedRecipes[this.recipe.type] && platedRecipes[this.recipe.type].id === this.recipe.id;
+    },
+    enablePlate() {
+      return this.$store.getters.getFeatureFlags.enablePlate;
     }
-  },  
+  },
   created() {
     this.$store.dispatch('getRecipe', this.$route.query.id);
+  },
+  destroyed() {
+    this.$store.dispatch('clearRecipe');
   },
   methods: {
     addRecipe() {
@@ -40,7 +46,7 @@ export default {
 
 <template>
   <div 
-    v-if="recipe"
+    v-if="Object.keys(recipes).length != 0"
     :class="$style.recipeContainer">
     <div>
       <div :class="$style.container">
@@ -69,7 +75,9 @@ export default {
             <div :class="$style.subtext">
               Type: {{ recipe.type }}
             </div>
-            <div :class="$style.description">
+            <div 
+              v-if="enablePlate"
+              :class="$style.description">
               <button 
                 v-if="isPlated"
                 @click="removeRecipe">

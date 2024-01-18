@@ -223,6 +223,9 @@ export default {
       } catch(err) {
         console.error(err);
       }
+    },
+    clearRecipe ({ commit }) {
+      commit('SET_CURRENT_RECIPE', { recipe: {} });
     }
   },
   getters: {
