@@ -1,11 +1,9 @@
 <script>
-import SubmitModal from '@/components/SubmitModal'
 import TheNavBar from '@/components/TheNavBar'
 
 export default {
   name: 'App',
   components: {
-    SubmitModal,
     TheNavBar
   },
   data() {
@@ -42,9 +40,6 @@ export default {
     <div :class="$style.router">
       <RouterView />
     </div>
-    <SubmitModal
-      v-if="showModal"
-      @closeModal="toggleModal" />
   </div>
 </template>
 

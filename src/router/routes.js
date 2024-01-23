@@ -5,6 +5,7 @@ import RecipeView from '@/router/RecipeView'
 import HomeView from '@/router/HomeView'
 // import PlateView from '@/router/PlateView'
 import ProfileView from '@/router/ProfileView'
+import SubmitView from '@/router/SubmitView'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ const router = new Router({
       path: '/profile',
       name: 'profile',
       component: ProfileView
+    },
+    {
+      path: '/submit',
+      name: 'submit',
+      component: SubmitView
     }
   ]
 })

@@ -7,11 +7,11 @@ export default {
     }
   },
   methods: {
-    toggleModal() {
-      this.$emit('toggleModal');
+    viewSubmit() {
+      this.$router.push({ name: 'submit' });
     },
     viewPlate() {
-      this.$router.push({ name: 'plate' })
+      this.$router.push({ name: 'plate' });
     }
   }
 }
@@ -26,7 +26,7 @@ export default {
     </div>
     <div 
       :class="$style.navItem"
-      @click="toggleModal">
+      @click="viewSubmit">
       Submit
     </div>
     <div />

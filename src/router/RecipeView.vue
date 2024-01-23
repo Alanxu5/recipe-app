@@ -25,6 +25,9 @@ export default {
     },
     enablePlate() {
       return this.$store.getters.getFeatureFlags.enablePlate;
+    },
+    displayRecipe() {
+      return this.recipe && Object.keys(this.recipe).length !== 0 
     }
   },
   created() {
@@ -46,7 +49,7 @@ export default {
 
 <template>
   <div 
-    v-if="Object.keys(recipes).length != 0"
+    v-if="displayRecipe"
     :class="$style.recipeContainer">
     <div>
       <div :class="$style.container">
