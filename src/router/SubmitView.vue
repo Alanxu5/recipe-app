@@ -53,56 +53,54 @@ export default {
 <template>
   <div>
     <div :class="$style.container">
-      <div :class="$style.topContainer">
-        <div :class="$style.imageUpload" />          
-        <div :class="$style.shortInput">
+      <div :class="$style.imageUpload" />          
+      <div :class="$style.shortInput">
+        <AppTextInput 
+          v-model="recipeModel.name"
+          label-name="Recipe Title" />
+        <div :class="$style.prepContainer">
+          <div>
+            <label :class="$style.submitLabel">
+              Type 
+              <select
+                v-model="recipeModel.type" 
+                :class="$style.prepInput">
+                <option 
+                  v-for="recipeType in recipeTypes"
+                  :key="recipeType.id"
+                  :value="recipeType.name">
+                  {{ recipeType.name }}
+                </option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label :class="$style.submitLabel">
+              Method 
+              <select
+                v-model="recipeModel.method" 
+                :class="$style.prepInput">
+                <option 
+                  v-for="method in recipeMethods"
+                  :key="method.id"
+                  :value="method.name">
+                  {{ method.name }}
+                </option>
+              </select>
+            </label>
+          </div>
+        </div>                  
+        <div :class="$style.timeInput">
           <AppTextInput 
-            v-model="recipeModel.name"
-            label-name="Recipe Title" />
-          <div :class="$style.prepContainer">
-            <div>
-              <label :class="$style.submitLabel">
-                Type 
-                <select
-                  v-model="recipeModel.type" 
-                  :class="$style.prepInput">
-                  <option 
-                    v-for="recipeType in recipeTypes"
-                    :key="recipeType.id"
-                    :value="recipeType.name">
-                    {{ recipeType.name }}
-                  </option>
-                </select>
-              </label>
-            </div>
-            <div>
-              <label :class="$style.submitLabel">
-                Method 
-                <select
-                  v-model="recipeModel.method" 
-                  :class="$style.prepInput">
-                  <option 
-                    v-for="method in recipeMethods"
-                    :key="method.id"
-                    :value="method.name">
-                    {{ method.name }}
-                  </option>
-                </select>
-              </label>
-            </div>
-          </div>                  
-          <div :class="$style.timeInput">
-            <AppTextInput 
-              v-model.number="recipeModel.prepTime"
-              label-name="Prep Time" />
-            <AppTextInput 
-              v-model.number="recipeModel.cookTime"
-              label-name="Cook Time" />
-            <AppTextInput 
-              v-model.number="recipeModel.servings"
-              label-name="Servings" />                
-          </div>                  
-        </div>
+            v-model.number="recipeModel.prepTime"
+            label-name="Prep Time" />
+          <AppTextInput 
+            v-model.number="recipeModel.cookTime"
+            label-name="Cook Time" />
+          <AppTextInput 
+            v-model.number="recipeModel.servings"
+            label-name="Servings" />                
+        </div>                  
       </div>
       <div :class="$style.bottomContainer">
         <div :class="$style.textareaContainer">
@@ -147,32 +145,23 @@ export default {
 </template>
 
 <style lang="scss" module>
-.material-icons {
-  font-size: 18px;
-}
-
-.material-icons:hover {
-  cursor: pointer;
-}
-
 .container {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 38% 62%;
   grid-row-gap: 1rem;
 }
 
-.topContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
 .imageUpload {
-  height: 100%;
-  width: 90%;
+  height: 200px;
+  width: 100%;
   background-color: lightgray;
   border: 1px solid #D5D1D1;
+}
+
+.shortInput {
+  display: grid;
+  grid-row-gap: 10px;
 }
 
 .textareaContainer {
@@ -181,15 +170,9 @@ export default {
   grid-template-rows: 20px 1fr;
 }
 
-.shortInput {
-  display: grid;
-  grid-template-rows: auto auto auto;
-  grid-row-gap: auto;
-}
-
 .timeInput {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 1rem;
 }
 
@@ -212,12 +195,9 @@ select {
   grid-row-gap: 10px;
 }
 
-.submitLabel {
-  float: left;
-}
-
-text-input {
-  float: left;
+.submitContainer {
+  align-self: center;
+  justify-self: end;
 }
 
 button {
@@ -226,14 +206,5 @@ button {
 
 .submitButton:hover {
   cursor: pointer;
-}
-
-textarea {
-  resize: none;
-}
-
-.submitContainer {
-  align-self: center;
-  justify-self: end;
 }
 </style>
