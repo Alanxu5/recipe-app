@@ -51,95 +51,93 @@ export default {
 </script>
 
 <template>
-  <div>
-    <div :class="$style.container">
-      <div :class="$style.imageUpload" />          
-      <div :class="$style.shortInput">
+  <div :class="$style.container">
+    <div :class="$style.imageUpload" />          
+    <div :class="$style.shortInput">
+      <AppTextInput 
+        v-model="recipeModel.name"
+        label-name="Recipe Title" />
+      <div :class="$style.prepContainer">
+        <div>
+          <label :class="$style.submitLabel">
+            Type 
+            <select
+              v-model="recipeModel.type" 
+              :class="$style.prepInput">
+              <option 
+                v-for="recipeType in recipeTypes"
+                :key="recipeType.id"
+                :value="recipeType.name">
+                {{ recipeType.name }}
+              </option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label :class="$style.submitLabel">
+            Method 
+            <select
+              v-model="recipeModel.method" 
+              :class="$style.prepInput">
+              <option 
+                v-for="method in recipeMethods"
+                :key="method.id"
+                :value="method.name">
+                {{ method.name }}
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>                  
+      <div :class="$style.timeInput">
         <AppTextInput 
-          v-model="recipeModel.name"
-          label-name="Recipe Title" />
-        <div :class="$style.prepContainer">
-          <div>
-            <label :class="$style.submitLabel">
-              Type 
-              <select
-                v-model="recipeModel.type" 
-                :class="$style.prepInput">
-                <option 
-                  v-for="recipeType in recipeTypes"
-                  :key="recipeType.id"
-                  :value="recipeType.name">
-                  {{ recipeType.name }}
-                </option>
-              </select>
-            </label>
-          </div>
-          <div>
-            <label :class="$style.submitLabel">
-              Method 
-              <select
-                v-model="recipeModel.method" 
-                :class="$style.prepInput">
-                <option 
-                  v-for="method in recipeMethods"
-                  :key="method.id"
-                  :value="method.name">
-                  {{ method.name }}
-                </option>
-              </select>
-            </label>
-          </div>
-        </div>                  
-        <div :class="$style.timeInput">
-          <AppTextInput 
-            v-model.number="recipeModel.prepTime"
-            label-name="Prep Time" />
-          <AppTextInput 
-            v-model.number="recipeModel.cookTime"
-            label-name="Cook Time" />
-          <AppTextInput 
-            v-model.number="recipeModel.servings"
-            label-name="Servings" />                
-        </div>                  
+          v-model.number="recipeModel.prepTime"
+          label-name="Prep Time" />
+        <AppTextInput 
+          v-model.number="recipeModel.cookTime"
+          label-name="Cook Time" />
+        <AppTextInput 
+          v-model.number="recipeModel.servings"
+          label-name="Servings" />                
+      </div>                  
+    </div>
+    <div :class="$style.bottomContainer">
+      <div :class="$style.textareaContainer">
+        <label :class="$style.submitLabel">
+          Description
+        </label>
+        <textarea
+          v-model="recipeModel.description" />
       </div>
-      <div :class="$style.bottomContainer">
-        <div :class="$style.textareaContainer">
-          <label :class="$style.submitLabel">
-            Description
-          </label>
-          <textarea
-            v-model="recipeModel.description" />
-        </div>
-        <div :class="$style.textareaContainer">
-          <label :class="$style.submitLabel">
-            Equipment - Description|Item (large|baking sheet)
-          </label>
-          <textarea
-            v-model="recipeModel.equipment" />
-        </div>
-        <div :class="$style.textareaContainer">
-          <label :class="$style.submitLabel">
-            Ingredients - Amount|Unit|Ingredient|Preparation (5|lbs|chicken thigh|)
-          </label>
-          <textarea
-            v-model="recipeModel.ingredients" />
-        </div>
-        <div :class="$style.textareaContainer">
-          <label :class="$style.submitLabel">
-            Directions (new line for each direction w/o numbers)
-          </label>
-          <textarea
-            v-model="recipeModel.directions" />
-        </div>         
-        <div :class="$style.submitContainer">
-          <button
-            type="button"
-            :class="$style.submitButton"
-            @click="submitRecipe">
-            Submit
-          </button>    
-        </div>                                     
+      <div :class="$style.textareaContainer">
+        <label :class="$style.submitLabel">
+          Equipment - Description|Item (large|baking sheet)
+        </label>
+        <textarea
+          v-model="recipeModel.equipment" />
       </div>
+      <div :class="$style.textareaContainer">
+        <label :class="$style.submitLabel">
+          Ingredients - Amount|Unit|Ingredient|Preparation (5|lbs|chicken thigh|)
+        </label>
+        <textarea
+          v-model="recipeModel.ingredients" />
+      </div>
+      <div :class="$style.textareaContainer">
+        <label :class="$style.submitLabel">
+          Directions (new line for each direction w/o numbers)
+        </label>
+        <textarea
+          v-model="recipeModel.directions" />
+      </div>         
+      <div :class="$style.submitContainer">
+        <button
+          type="button"
+          :class="$style.submitButton"
+          @click="submitRecipe">
+          Submit
+        </button>    
+      </div>                                     
     </div>
   </div>
 </template>
@@ -147,7 +145,6 @@ export default {
 <style lang="scss" module>
 .container {
   height: 100%;
-  width: 100%;
   display: grid;
   grid-row-gap: 1rem;
 }
