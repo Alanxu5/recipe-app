@@ -58,36 +58,32 @@ export default {
         v-model="recipeModel.name"
         label-name="Recipe Title" />
       <div :class="$style.prepContainer">
-        <div>
-          <label :class="$style.submitLabel">
-            Type 
-            <select
-              v-model="recipeModel.type" 
-              :class="$style.prepInput">
-              <option 
-                v-for="recipeType in recipeTypes"
-                :key="recipeType.id"
-                :value="recipeType.name">
-                {{ recipeType.name }}
-              </option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <label :class="$style.submitLabel">
-            Method 
-            <select
-              v-model="recipeModel.method" 
-              :class="$style.prepInput">
-              <option 
-                v-for="method in recipeMethods"
-                :key="method.id"
-                :value="method.name">
-                {{ method.name }}
-              </option>
-            </select>
-          </label>
-        </div>
+        <label>
+          <span>Type</span> 
+          <select
+            v-model="recipeModel.type" 
+            :class="$style.prepInput">
+            <option 
+              v-for="recipeType in recipeTypes"
+              :key="recipeType.id"
+              :value="recipeType.name">
+              {{ recipeType.name }}
+            </option>
+          </select>
+        </label>
+        <label>
+          <span>Method</span> 
+          <select
+            v-model="recipeModel.method" 
+            :class="$style.prepInput">
+            <option 
+              v-for="method in recipeMethods"
+              :key="method.id"
+              :value="method.name">
+              {{ method.name }}
+            </option>
+          </select>
+        </label>
       </div>                  
       <div :class="$style.timeInput">
         <AppTextInput 
@@ -103,28 +99,28 @@ export default {
     </div>
     <div :class="$style.bottomContainer">
       <div :class="$style.textareaContainer">
-        <label :class="$style.submitLabel">
+        <label>
           Description
         </label>
         <textarea
           v-model="recipeModel.description" />
       </div>
       <div :class="$style.textareaContainer">
-        <label :class="$style.submitLabel">
+        <label>
           Equipment - Description|Item (large|baking sheet)
         </label>
         <textarea
           v-model="recipeModel.equipment" />
       </div>
       <div :class="$style.textareaContainer">
-        <label :class="$style.submitLabel">
+        <label>
           Ingredients - Amount|Unit|Ingredient|Preparation (5|lbs|chicken thigh|)
         </label>
         <textarea
           v-model="recipeModel.ingredients" />
       </div>
       <div :class="$style.textareaContainer">
-        <label :class="$style.submitLabel">
+        <label>
           Directions (new line for each direction w/o numbers)
         </label>
         <textarea
@@ -150,7 +146,7 @@ export default {
 }
 
 .imageUpload {
-  height: 200px;
+  height: 250px;
   width: 100%;
   background-color: lightgray;
   border: 1px solid #D5D1D1;
@@ -177,10 +173,15 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: .5rem;
-}
+  
+  span {
+    display: block;
+    padding-bottom: 5px;
+  }
 
-select {
-  width: 100%;
+  select {
+    width: 100%;
+  }
 }
 
 .prepInput {
